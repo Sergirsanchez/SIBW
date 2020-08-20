@@ -1,0 +1,87 @@
+/*PARTE ESPECÍFICA*/
+
+    /*------------------------------------------------ ARTICLE --------------------------------*/
+
+    article { /*Formato del área*/
+        width: 70%;
+        display: flex;
+        flex-direction: row;  
+        flex-wrap: wrap; 
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    article > .event{
+        width: 30%;
+        margin-bottom: 2%;
+
+    }
+
+    article > .event:hover{
+        background-color: rgba(199, 33, 33, 0.849);
+    }
+
+    article > .event img{
+        width: 100%;
+        max-height: 80%;
+        border: solid 2px black;
+    }
+
+    article > .event a{
+        text-decoration: none;
+    }
+
+    article span{
+        background-color: rgba(199, 33, 33, 0.849);
+    }
+
+  /*----------------- MEDIAS ------------------*/
+
+  @media (max-width:850px){
+    .insideGrid > img{
+        width: 20%;
+        margin: 1% auto 0% auto;
+    }
+
+    .insideGrid > h1{
+        width: 98%;
+        margin: auto;
+        margin: 2% 0%;
+    }
+
+    .insideGrid > #space{
+        width: 100%;
+    }
+
+    .insideGrid > nav > a{  
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    aside{
+        width: 95%;
+        margin: 0 auto 4% auto;
+
+    }
+
+    aside > ul  li:not(:first-of-type){
+        margin: 5% 0%;
+    }
+
+    article { /*Formato del área*/
+        width: 85%;
+    }
+
+    article > .event{
+        width: 100%;
+        margin-bottom: 5%;
+
+    }
+
+    footer *{
+        width: 100%;
+        text-align: center;
+    }
+
+
+}

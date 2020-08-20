@@ -1,0 +1,243 @@
+.listContainer{
+    width: 70%;
+}
+.listContainer > h2, .listContainer > .textBlock{ /*Formato de los textos*/ 
+    width: 95%;
+    margin: auto;
+    text-align: center;
+    background-color: rgba(121, 21, 21, 0.63);
+    padding: 1% 0%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.listContainer > h2{  /*Formato de los títulos*/
+    font-size: xx-large;
+    font-style: italic;
+}
+
+.listContainer > form, .listContainer > .resultsContainer{        /*Formato del formulario en general*/
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    background: rgba(199, 33, 33, 0.534);
+
+}
+
+.listContainer > form >*{
+    margin: 1% 0%;
+}
+
+.listContainer > form > .notPublishedData, .listContainer > form > .numberOfEvent{  /*checkbox para añadir elementos no publicados*/
+    display: block;
+}
+
+.listContainer > .resultsContainer{    /*Contenedor que almacena los resultados*/
+    width: 70%;
+    margin-bottom: 2%;
+    padding: 2%;
+}
+
+
+    /*Formato de cada uno de los resultados dentro del contenedor*/
+    .listContainer > .resultsContainer .result{
+        width: 95%;
+        margin: auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+
+    /*Contenido dentro de esos resultados*/
+    .listContainer > .resultsContainer .result > p{ /*Del texto de no encontrar resultdos y del que indica el número de evento*/
+        width: 60%;
+        margin: 1% 15% 1% 2%;
+        text-align: left;
+        font-size: large;
+        font-weight: bolder;
+    }
+
+    .listContainer > .resultsContainer >.result > .firstLeft{ /*Formato del nombre y número de evento en la lista de comentarios*/
+        width: 95%;
+        margin: 1% 2% 1% 0%;
+        text-align: left;
+    }
+
+    .listContainer > .resultsContainer .result > .secondLeft, .leftUser{ /*Formato del nombre y número de evento en la lista de eventos y de los usuarios*/
+        width: 70%;
+        margin: 1% 2% 1% 0%;
+        text-align: left;
+        border:solid 1px black;
+        background-color: rgba(121, 21, 21, 0.63);
+        padding: 0.5%;
+
+    }
+    
+    .listContainer > .resultsContainer .result > .secondLeft:hover{ 
+        background-color: rgb(121, 21, 21);
+    }
+
+    .listContainer > .resultsContainer .result > .secondLeft > .linkEvents{   /*Eliminamos el subrayado de los enlaces a los eventos en la lista*/
+        text-decoration: none;
+    }
+
+    .listContainer > .resultsContainer .result .idEvent{ /*Número del evento*/
+        font-size:large;
+        font-weight: bold;
+    }
+
+    /*Formato de los menús predefinidos*/
+
+    .listContainer > .resultsContainer >.result >.preDesignedComment{
+        width: 80%;
+        margin: 1% auto;
+        background-color: rgba(121, 21, 21, 0.63);
+        border:solid 1px black;
+    }
+
+    .listContainer > .resultsContainer >.result >.preDesignedComment > p{
+        font-weight: bold;
+    }
+
+    .listContainer > .resultsContainer >.result >.preDesignedComment > p:first-child{
+        float: left;
+    }
+
+    .listContainer > .resultsContainer >.result >.preDesignedComment > p:nth-child(2){
+        float: right;
+    }
+
+    .listContainer > .resultsContainer >.result >.preDesignedComment > pre{
+        display: inline-block;
+        width: 98%;
+        text-align: left;
+        margin: 5% auto 0% auto;
+        clear: both;
+        height: auto;
+        white-space:pre-wrap;
+    }
+
+    .listContainer > .resultsContainer .result > form{ /* De los formularios internos*/
+        display: inline-block;
+        width: 5%;
+        margin: 0% 1%;
+    }
+
+    .listContainer > .resultsContainer .result > form > *{   /*Tamaño de los botones submit*/
+        width: 100%;
+    }
+
+    #remark{
+        background-color: rgba(255, 255, 255, 0.904);
+        color: black;
+    }
+
+    /*Formato del mensaje de "no resultados" en AJAX*/
+    .noCoincidenceAJAX{ 
+        width: 60%;
+        margin: 1% 15% 1% 2%;
+        text-align: left;
+        font-size: large;
+        font-weight: bolder;
+    }
+/*----------------- MEDIAS ------------------*/
+
+@media(max-width:1250px){
+    .listContainer > .resultsContainer .result > form{ /* De los formularios internos*/
+        width: 6%;
+    }
+
+    .listContainer > .resultsContainer{ /*Contenedor de los resultados*/
+        width: 90%;
+    }
+
+
+}
+
+ @media (max-width:850px){
+    .insideGrid > img{
+        width: 20%;
+        margin: 1% auto 0% auto;
+    }
+
+    .insideGrid > h1{
+        width: 98%;
+        margin: auto;
+        margin: 2% 0%;
+    }
+
+    .insideGrid > #space{
+        width: 100%;
+    }
+
+    .insideGrid > nav > a{  
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    aside{
+        width: 95%;
+        margin: 0 auto 4% auto;
+
+    }
+
+    aside > ul  li:not(:first-of-type){
+        margin: 5% 0%;
+    }
+
+    
+    footer *{
+        width: 100%;
+        text-align: center;
+    }
+
+    .listContainer{ /*Contenedor de toda la parte central que no es aside*/
+        width: 100%;
+    }
+
+    .listContainer > form{  /*Contenedor con la búsqueda*/
+        width: 90%;
+    }
+
+    .listContainer > .resultsContainer{ /*Contenedor de los resultados*/
+        width: 95%;
+    }
+
+    .listContainer > .resultsContainer .result > form{ /* De los formularios internos*/
+        width: 7%;
+    }
+
+
+ }
+
+ @media(max-width:500px){
+    .listContainer > .resultsContainer .result > form{ /* De los formularios internos*/
+        margin: auto;
+        width: 45%;
+        margin: 0%;
+    }
+
+    .listContainer > .resultsContainer .result > form > *{   /*Tamaño de los botones submit*/
+        width: 20%;
+    }
+
+    .listContainer > .resultsContainer .result > .secondLeft{ /*Formato del nombre y número de evento en la lista de eventos*/
+        width: 90%;
+
+    }
+
+    /*Formato de cada uno de los resultados dentro del contenedor*/
+    .listContainer > .resultsContainer > .result{
+        width: 100%;
+    }
+
+    .listContainer > .resultsContainer >.result >.preDesignedComment{
+        width: 90%;
+    }
+
+ }

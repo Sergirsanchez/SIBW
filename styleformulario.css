@@ -1,0 +1,237 @@
+main > .edit{
+    width: 70%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    background-color: rgba(199, 33, 33, 0.534);
+    border: solid 1px black;
+    text-align: center;
+}
+
+main > .edit > h1{ /*Formato del título del formulario*/
+    font-weight: bold;
+    display: inline-block;
+    font-size: x-large;
+    margin:  2% auto;
+    padding: 0.5%;
+    width: 25%;
+    background-color: rgba(121, 21, 21, 0.63);
+}
+
+main > .edit > .editBlock{ /*Formato de los bloques de contenido*/
+    margin: 1% 2%;
+    padding-right: 0%;
+    text-align: left;
+    
+}
+
+main > .edit> .editBlock > label{ /*Formato de los bloques de contenido*/
+    font-weight: bold;
+    display: inline-block;
+    width: 35%; 
+    overflow-wrap: break-word; 
+}
+
+span{   /*Mensaje de error si algún campo no cumple con los requisitos*/
+    font-weight: bold;
+    display: block;
+}
+
+form > p{   /*Texto de "Campos obligatotios"*/
+    font-weight: bold;
+}
+
+main > .edit > .buttonBlock{
+    margin-bottom: 2%;
+}
+
+input[name="tags"],input[name="eventName"]{ /*Alargamos el text de las etiquetas*/
+    width: 35%;
+}
+
+
+.containerImages{   /*Contenedor de las imágenes y los botones para eliminarlos*/
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1%;
+    border: solid 3px black;
+    margin-bottom: 2%;
+}
+
+.containerImages > .showImages{   /*Formato de los contenedores imagen+botón*/
+    width: 21%;
+    margin-bottom: 1%;
+}
+
+.containerImages > .showImages > img{ /*Formato de las imágenes*/
+    width: 100%;
+}
+
+.containerImages >.showImages > form{
+    width: 100%;
+}
+
+ #imagesOfEvent{
+    text-align: left;
+    margin:2%;
+    margin-bottom: 1%;
+}
+
+.modifyUserRolForm{ /*Formato de los formularios de modificación de roles de usuario*/
+    width: 50%;
+    border: solid 1px black;
+    background-color: rgba(199, 33, 33, 0.534);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    text-align: center;
+
+}
+
+.modifyUserRolForm > *{ /*Formato de cada uno de los bloques dentro del formulario*/
+    margin: 2%;
+
+}
+
+.modifyUserRolForm > .editBlock:first-of-type{  /*Al primer elemento le añadimos más espacio*/
+    margin-top: 5%;
+}
+
+.modifyUserRolForm > .editBlock:first-of-type > p{  /*Añadimos espacio entre los párrafos de nombre y correo*/
+    margin: auto;
+    width: 40%;
+    margin-bottom: 2%;
+}
+
+.modifyUserRolForm > .editBlock > .optionBlock{    /*Formato de los radio buttons*/
+    display: block;
+    width: 40%;
+    margin: auto;
+    margin-bottom: 2%;
+}
+
+.modifyUserRolForm > .editBlock > .optionBlock > label{ /*daremos formato también a las etiquetas de los nombres, para que todas las opciones queden alineadas*/
+    display: inline-block;
+    width: 80%;
+    font-weight: bold;
+}
+
+/*----------------- MEDIAS ------------------*/
+ @media (max-width:850px){
+    .insideGrid > img{
+        width: 20%;
+        margin: 1% auto 0% auto;
+    }
+
+    .insideGrid > h1{
+        width: 98%;
+        margin: auto;
+        margin: 2% 0%;
+    }
+
+    .insideGrid > #space{
+        width: 100%;
+    }
+
+    .insideGrid > nav > a{  
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    aside{
+        width: 95%;
+        margin: 0 auto 4% auto;
+
+    }
+
+    aside > ul  li:not(:first-of-type){
+        margin: 5% 0%;
+    }
+
+    footer *{
+        width: 100%;
+        text-align: center;
+    }
+
+    article{
+        width: 80%;
+    }
+
+    main > .edit{
+        width: 90%;
+    }
+
+    .login p, input[type="submit"]{
+        margin-top: 4%;
+    }
+
+    main > .edit > .editBlock > label{ /*Formato de los bloques de contenido*/
+        width: 90%; 
+
+    }
+
+    main > .edit > .editBlock > textarea{
+        width: 90%;
+    }
+
+    main > .edit >.editBlock > input[type="text"]{
+        width: 40%;
+    }
+
+    main > .edit >.editBlock > input[name="tags"]{ /*Alargamos el text de las etiquetas*/
+        width: 65%;
+    }
+
+    main > .edit >.editBlock > input[name="eventName"]{
+        width: 65%;
+        
+    }
+
+    main > .edit > .editBlock > input[type="file"]{
+        overflow-wrap: break-word;
+        width: 90%;
+    }
+
+    main > .edit > h1{ /*Formato del título del formulario*/
+        width: 50%;
+    }
+
+    .containerImages > .showImages{   /*Formato de los contenedores imagen+botón*/
+        width: 80%;
+        margin-bottom: 3%;
+    }
+
+    .modifyUserRolForm > .editBlock > .optionBlock{    /*Formato de los radio buttons*/
+        width: 80%;
+    }
+
+    .modifyUserRolForm{ /*Formato de los formularios de modificación de roles de usuario*/
+        width: 85%;    
+    }
+}
+
+ @media (max-width: 400px){
+
+    article{
+        width: 90%;
+    }
+
+    main > .edit >.editBlock > input[name="tags"]{ /*Alargamos el text de las etiquetas*/
+        width: 85%;
+    }
+
+    main > .edit >.editBlock > input[name="eventName"]{
+        width: 85%;
+        
+    }
+
+ }

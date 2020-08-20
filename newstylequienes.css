@@ -1,0 +1,94 @@
+/*PARTE ESPECÍFICA*/
+/*------------------------------------------ MAIN --------------------------------------------*/
+main{          /*Es igual que footer y header, pero eliminando el color de fondo. Se añade aquí para abstraer las partes comunes de las específicas a cada página*/ 
+    padding: 0%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+    /*Título*/
+
+    main > h1{
+        width: 50%;
+        text-align: center;
+        font-size: 300%;
+        margin: 1% 0%;
+    }
+
+    /*Resto*/
+
+    main > *:not(h1){   
+        width: 95%;
+        margin-bottom: 1%;
+    }
+
+    /*Formato de todos los párrafos menos el primero*/
+    main > p:not(:first-of-type){
+        font-weight: bold;
+    }
+
+    main > p:nth-of-type(3){
+        width: 50%;
+        font-size: 150%;
+        text-align: center;
+        background-color: rgba(165, 42, 42, 0.555);
+    }
+
+    main > p:last-of-type{
+        width: 100%;
+    }
+
+    /*Formato de la lista*/
+    main > ul{
+        width: 65%;
+    }
+
+    main > ul  span{
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    /*Formato de la imágen*/
+    main > img{
+        width: 30%;
+    }
+
+    /*----------------- MEDIAS ------------------*/
+
+@media (max-width:850px){
+    .insideGrid > img{
+        width: 20%;
+        margin: 1% auto 0% auto;
+    }
+
+    .insideGrid > h1{
+        width: 98%;
+        margin: auto;
+        margin: 2% 0%;
+    }
+
+    .insideGrid > #space{
+        width: 100%;
+    }
+
+    .insideGrid > nav > a{  
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    main > p:nth-of-type(3){
+        width: 80%;
+        margin-top: 3%;
+    }
+
+    main > img{
+        width: 50%;
+    }
+
+    footer *{
+        width: 100%;
+        text-align: center;
+    }
+
+
+}

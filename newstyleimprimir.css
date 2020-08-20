@@ -1,0 +1,225 @@
+main *{
+    color: black;
+}
+
+var{
+    display: none;    
+}
+
+body {  /*Quitar la imagen de fondo*/
+    font-style: italic;
+    background-image: none;
+  }
+
+/*PARTE ESPECÍFICA*/
+
+/*------------------------------ HEADER --------------------------*/
+
+    .insideGrid > h1{
+        width: 98%;
+        margin: auto;
+        text-align: center;
+        font-size: 300%;
+        margin: auto;
+        margin-top: 2%;
+    }
+    
+    .insideGrid > #space{
+        width: 100%;
+    }
+
+    .insideGrid > img{
+        width: 10%;
+        margin: auto;
+    }
+
+    /*---------------------------------------------------------- ARTICLE ----------------------------------------*/
+    article{
+        width: 98%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+
+    }
+
+        /*Títulos de los eventos*/
+        article > p{
+            width: 90%;
+            font-weight: bold;
+            font-size: x-large;
+            margin-bottom: 2%;
+            margin-left: 3%; 
+            padding: 1% 0%;
+        }
+
+        /*Contenido del evento*/
+        article > .offerContent{
+            width: 98%;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 5%;
+        }
+
+            /*Texto relativo al evento*/
+            article > .offerContent > .offerInfo{
+                width: 60%;
+                padding: 1% 0% 1% 1%;
+            }
+
+                article > .offerContent > .offerInfo > *:not(.noPadding){   /*Añadir espacios entre todos los elementos de la info acerca del evento*/
+                    width: 95%;
+                    margin: auto;
+                    padding: 2% 0%;
+                }
+
+                article > .offerContent > .offerInfo > .noPadding{
+                    width: 98%;
+                    margin: auto;
+                    font-weight: bold;
+                    padding-top: 2%;
+                    
+                }
+
+
+                article > .offerContent > .offerInfo > .tab{
+                    margin-left: 10%;
+                    text-decoration: none;
+                    
+                }
+
+                article > .offerContent > .offerInfo  a{
+                    color: black;
+                }
+
+                article > .offerContent > .offerInfo > a[class="tab"]{
+                    display: inline-block;
+                    width: 25%;
+                    margin-top: 1%;
+                    text-align: center;
+                }
+
+
+
+            /*Formato al slider de imagenes*/
+
+            article > .offerContent > .photos{
+                width: 30%;
+                align-items: center;
+            }
+
+            article > .offerContent > .photos > #slider{
+                height: 350px;
+                width: 100%;
+                margin: auto;
+                position: relative;
+                list-style: none;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                align-self: center;
+            }
+
+            article > .offerContent > .photos > #slider img{
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: 0.5s;
+            }
+
+            article > .offerContent > .photos  > #slider input[type="radio"]{
+                display: none;
+            }
+            
+            article > .offerContent > .photos  > #slider input[type="radio"]:checked ~ img{
+                opacity: 1;
+            }
+            
+            article > .offerContent > .photos  > #slider input[type="radio"] + label{
+                position: relative;
+                z-index: 9;
+                margin: 10px;
+            
+                display: block;
+                width: 15px;
+                height: 15px;
+                background-color: white;
+                border: solid 1px black;
+                border-radius: 50%;
+                cursor: pointer;
+            
+            }
+            
+            article > .offerContent > .photos  > #slider input[type="radio"]:checked + label{
+                background-color: black;
+            }
+
+/*----------------- MEDIAS ------------------*/
+@media (max-width: 1300px){
+    article > .offerContent{
+        flex-direction: column;
+        
+    }
+
+    article  > .offerContent > .photos{
+        order: -1;
+        width: 70%;
+        margin: 3% auto;
+    }
+
+    article > .offerContent > .offerInfo{
+        width: 100%;
+        margin: auto;
+    }
+ }
+
+@media (max-width:850px){
+    .insideGrid > img{
+        width: 20%;
+        margin-top: 1%;
+    }
+
+    .insideGrid > nav > a{  
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    article > p{
+        width: 98%;
+        margin: auto;
+    }
+
+    article > .offerContent{
+        flex-direction: column;
+        
+    }
+
+
+    article  > .offerContent > .photos{
+        width: 100%;
+    }
+
+    article > .offerContent > .offerInfo{
+        width: 95%;
+        margin: auto;
+    }
+
+    .commentMenu{
+        display: none;
+    }
+
+    footer *{
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+            

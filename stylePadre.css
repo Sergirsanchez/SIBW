@@ -1,0 +1,220 @@
+/*CSS (y HTML5) Reset, para que el formato funcione correctamete independientemente del navegador usado y de su versión*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address,
+big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark,
+audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    color:white;
+
+}
+    
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main {
+    display: block;
+}
+
+/*PARTES COMUNES*/
+/*------------------------------ BODY ---------------------------------------------------*/
+body {  /*Añadir la imagen de fondo*/
+    font-style: italic;
+    background-image: url("images_and_gifs_portada/1200px-All_Gizah_Pyramids.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+/*------------------------------ HEADER Y FOOTER -------------------------------------------------*/
+
+header,footer{
+    width: 99%;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: rgb(75, 4, 4);
+    padding: 1% 0%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.insideGrid{    /*Flex que se reutiliza tanto en el header como en el footer*/
+    width: 98%;
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+    /*Parte de arriba del header (gif + titulo)*/
+    .insideGrid:first-child{    /*Para cambiar el formato a la parte de arriba (Título + gif)*/
+        justify-content: space-between;
+    }
+
+    .insideGrid > h1{
+        width: 50%;
+        margin-right: 25%;
+        text-align: center;
+        font-size: 300%;
+    }
+
+    .insideGrid > img{
+        width: 7%;
+
+    }
+
+    .insideGrid > #space{
+        width: 0;
+    }
+
+    /*Parte de abajo del header (nav)*/
+
+    .insideGrid > nav { /*Dar formato de flex también a los elementos dentro del nav, para que haya espacios equidistantes entre los elementos*/
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 1%;
+    }
+
+    .insideGrid > nav > a{  /*Le damos tamaño y le quitamos el subrayado a los enlaces del nav*/
+        width: 14%;
+        text-decoration: none;
+        text-align: center;
+        font-size: x-large;
+    }
+
+    .insideGrid > nav > a:hover{
+        background-color: rgb(51, 3, 3);
+    }
+
+footer  span{ /*Títulos del address*/
+    text-decoration: underline;
+}
+
+/*------------------------------------------------------- MAIN -----------------------------------------*/
+
+main{
+    width: 99%;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 3% 0% 1% 0%;
+}
+
+   /*--------------------------------------------- ASIDE -----------------------------------------------*/
+   aside{
+    width: 25%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    }
+
+    aside > *{
+        border: solid 1px black;
+    }
+
+    /*Formato de la caja de "Qué hacer"*/
+    aside > .whatToDo{
+        background: rgba(199, 33, 33, 0.534);
+    }
+
+    /*Formato interno de la caja*/
+    aside > .whatToDo >  * {
+        padding-top: 5%;
+    }
+
+    aside > .whatToDo >  h1{
+        font-weight: bold;
+        text-align: center;   
+    }
+
+    aside > .whatToDo >  p {
+        width: 85%;
+        margin: auto;
+    }
+
+    aside > .whatToDo >  ul{
+        width: 50%;
+        margin: auto;
+        padding: 10% 0%;
+    }
+
+    aside > .whatToDo >  ul  a{
+        text-decoration: none;
+    }
+
+    aside > .whatToDo >  ul a:hover{
+        background-color: rgba(121, 21, 21, 0.63);
+    }
+
+    /*Caja de login*/
+
+     .login{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        text-align: center; /*Poniendo esto en el contenedor conseguimos alinear el input*/
+        background: rgba(199, 33, 33, 0.534);
+        margin-bottom: 2%;
+        padding-bottom: 4%;
+    }
+
+    .login > h1{
+        margin: 2% auto;
+        font-weight: bold;
+        font-size: large;
+    }
+    .rows{ /*Contiene todas las filas del login menos el botón (para hacer mas fácil que se muevan los label e inputs)*/
+        width: 98%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    
+     .login > form > .rows{
+         margin-top: 1%;
+     }
+
+    .login p, input[type="submit"]{
+        margin-top: 2%;
+    }
+
+    .login p{   /*Formato del texto indicativo al logueo*/
+        width: 96%;
+    }
+
+    .login  .rows > label{
+        display: inline-block;
+        width: 30%;
+        font-weight: bold;
+        margin-right: 3%;
+        text-align: start;
+    }
+
+    .login .rows > input[type="text"],input[type="password"]{
+        width: 50%;
+    }
+
+    span{
+        font-weight: bold;
+    }
+
+    .login .rows > .error{ /*Mensajes de error*/
+        display: block;
+    }
+
+    .login .rows > p{
+        margin: auto;
+        margin-bottom: 1%;
+    }
