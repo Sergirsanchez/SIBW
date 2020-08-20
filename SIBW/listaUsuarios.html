@@ -1,0 +1,57 @@
+{% extends "padre.html" %}
+
+{% block cssPadre %}{{parent()}}{% endblock %}
+{% block css%}href="stylelista.css"{% endblock %}
+{% block title %}Portada{% endblock %}
+
+{% block main%}
+
+        {% block aside%}
+            {{parent()}}
+        {% endblock %}
+      
+    <div class="listContainer">
+        <h2>Lista de los usuarios del sistema:</h2>
+        
+
+        <div class="resultsContainer">
+            
+            {% for i in 0..(usersData['names']|length)-1 %}
+                <div class="result">
+
+                    <div class ="leftUser">
+                        <p><span>Nombre: </span>{{usersData['names'][i]}}</p> 
+                        <p><span>Correo: </span>{{usersData['emails'][i]}}</p>
+                    </div>
+
+                    <form action="formulario.php" method="POST" title="Modificar usuario">      
+                        <input type="hidden" name="modifyUserRol" value="1">
+                        <input type="hidden" name="userName" value="{{usersData['names'][i]}}"> 
+                        <input type="hidden" name="userEmail" value="{{usersData['emails'][i]}}"> 
+                        <input type="hidden" name="userRol" value="{{usersData['rols'][i]}}"> 
+                        <input src="../images_and_gifs_portada/pencil.png" type="image" value="">
+
+                    </form>
+
+                    {% if usersData['rols'][i] != "super" %}   <!--A los superusuarios no se les puede eliminar directamente, antes habrá que quitarles permisos-->
+                        <form action="lista.php" method="POST" title="Eliminar usuario">
+                            <input type="hidden" name="deleteUser" value="1">
+                            <input type="hidden" name="userToDelete" value="{{usersData['names'][i]}}">  <!--Como no se permite repetir nombres, con pasar el nombre del usuario a eliminar basta-->
+                            <input  src="../images_and_gifs_portada/cancel.png" type="image" value="">
+
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if userDeleted == 1%}
+        <script language="javascript">alert("Usuario eliminado correctamente")</script>
+    {% endif %}
+
+    {% if userModified == 1%}
+        <script language="javascript">alert("Credenciales de usuario modificadas correctamente")</script>
+    {% endif %}
+   
+{% endblock %}

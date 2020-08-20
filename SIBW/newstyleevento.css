@@ -1,0 +1,517 @@
+/*CSS (y HTML5) Reset, para que el formato funcione correctamete independientemente del navegador usado y de su versión*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address,
+big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark,
+audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    color:white;
+
+}
+    
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main {
+    display: block;
+}
+
+var{
+    display: none;
+}
+
+/*PARTES COMUNES*/
+/*------------------------------ BODY ---------------------------------------------------*/
+body {  /*Añadir la imagen de fondo*/
+    font-style: italic;
+    background-image: url("images_and_gifs_portada/1200px-All_Gizah_Pyramids.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+/*------------------------------ HEADER Y FOOTER -------------------------------------------------*/
+
+header,footer{
+    width: 99%;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: rgb(75, 4, 4);
+    padding: 1% 0%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.insideGrid{    /*Flex que se reutiliza tanto en el header como en el footer*/
+    width: 98%;
+    margin:auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+    /*Parte de arriba del header (gif + titulo)*/
+    .insideGrid:first-child{    /*Para cambiar el formato a la parte de arriba (Título + gif)*/
+        justify-content: space-between;
+    }
+
+    .insideGrid > h1{
+        width: 50%;
+        margin-right: 25%;
+        text-align: center;
+        font-size: 300%;
+    }
+
+    .insideGrid > img{
+        width: 7%;
+
+    }
+
+    /*Parte de abajo del header (nav)*/
+
+    .insideGrid > nav { /*Dar formato de flex también a los elementos dentro del nav, para que haya espacios equidistantes entre los elementos*/
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 1%;
+
+    }
+
+    .insideGrid > nav > a{  /*Le damos tamaño y le quitamos el subrayado a los enlaces del nav*/
+        width: 30%;
+        text-decoration: none;
+        text-align: center;
+        font-size: x-large;
+    }
+
+    .insideGrid > nav > a:hover{
+        background-color: rgb(51, 3, 3);
+    }
+
+footer  span{ /*Títulos del address*/
+    text-decoration: underline;
+}
+
+/*PARTE ESPECÍFICA*/
+/*------------------------------------------------------- MAIN -----------------------------------------*/
+
+main{
+    width: 99%;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 3% 0% 1% 0%;
+}
+
+    /*--------------------------------------------- ASIDE -----------------------------------------------*/
+    aside{
+        width: 25%;
+        height: 20%;    /*Valor "Falso", solo sirve para que el tamaño del aside se ajuste al texto y no ocupe toda la página (pasaría si quitamos la variable)*/
+        background: rgba(199, 33, 33, 0.534);
+        margin-left: 2%;
+
+    }
+
+        /*Formato interno del aside*/
+        aside > * {
+            padding-top: 5%;
+        }
+
+        aside > h1{
+            font-weight: bold;
+            text-align: center;   
+        }
+
+        aside > p {
+            width: 85%;
+            margin: auto;
+        }
+
+        aside > ul{
+            width: 50%;
+            margin: auto;
+            padding: 10% 0%;
+        }
+
+        aside > ul  a{
+            text-decoration: none;
+        }
+
+        aside > ul a:hover{
+            background-color: rgba(121, 21, 21, 0.63);
+          }
+
+
+    /*---------------------------------------------------------- ARTICLE ----------------------------------------*/
+    article{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+
+    }
+
+        /*Títulos de los eventos*/
+        article > p{
+            width: 100%;
+            background-color: rgba(121, 21, 21, 0.63);
+            text-align: center;
+            font-weight: bold;
+            font-size: x-large;
+            margin-bottom: 2%;
+            padding: 1% 0%;
+        }
+
+        /*Contenido del evento*/
+        article > .offerContent, article > .socialButtons{
+            width: 98%;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 5%;
+        }
+
+            /*Texto relativo al evento*/
+            article > .offerContent > .offerInfo{
+                width: 60%;
+                background-color: rgba(199, 33, 33, 0.788);
+                padding: 1% 0% 1% 1%;
+            }
+
+                article #here{
+                    margin-left: 5%;
+                }
+
+                article > .offerContent > .offerInfo > *:not(.noPadding){   /*Añadir espacios entre todos los elementos de la info acerca del evento*/
+                    display: inline-block;
+                    width: 95%;
+                    margin: auto;
+                    padding: 2% 0%;
+                }
+
+                article > .offerContent > .offerInfo > .noPadding{
+                    width: 98%;
+                    display: inline-block;
+                    margin: auto;
+                    font-weight: bold;
+                    padding-top: 2%;
+                    
+                }
+
+
+                article > .offerContent > .offerInfo > .tab{
+                    margin-left: 10%;
+                    text-decoration: none;
+                    
+                }
+
+                article > .offerContent > .offerInfo > a[class="tab"]{
+                    display: inline-block;
+                    width: 25%;
+                    margin-top: 1%;
+                    text-align: center;
+                }
+
+                article > .offerContent > .offerInfo > a[class="tab"]:hover, article .here:hover{
+                    background-color: rgba(121, 21, 21, 0.63);
+                }
+
+
+            /*Formato al slider de imagenes*/
+
+            article > .offerContent > .photos{
+                width: 35%;
+                align-items: center;
+            }
+
+            article > .offerContent > .photos > #slider{
+                height: 350px;
+                width: 100%;
+                margin: auto;
+                position: relative;
+                list-style: none;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                align-self: center;
+            }
+
+            article > .offerContent > .photos > #slider img{
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: 0.5s;
+            }
+
+            article > .offerContent > .photos  > #slider input[type="radio"]{
+                display: none;
+            }
+            
+            article > .offerContent > .photos  > #slider input[type="radio"]:checked ~ img{
+                opacity: 1;
+            }
+            
+            article > .offerContent > .photos  > #slider input[type="radio"] + label{
+                position: relative;
+                z-index: 9;
+                margin: 10px;
+            
+                display: block;
+                width: 15px;
+                height: 15px;
+                background-color: white;
+                border: solid 1px black;
+                border-radius: 50%;
+                cursor: pointer;
+            
+            }
+            
+            article > .offerContent > .photos  > #slider input[type="radio"]:checked + label{
+                background-color: black;
+            }
+
+
+            /*Botones sociales*/
+            article > .socialButtons{
+                justify-content: flex-start;
+                align-items: baseline;
+                background-color: rgba(199, 33, 33, 0.788);
+                padding: 1% 0% 1% 1%;
+            }
+
+            article > .socialButtons > h1{
+                width: 22%;
+                font-weight: bold;
+                align-self: center;
+            }
+
+            article > .socialButtons > a{
+                width: 2.5%;
+                margin: 0% 1%;
+                background-color: rgb(240, 223, 223);
+                padding: 0.5%;
+                border-radius: 10px;
+            }
+
+            article > .socialButtons > a:hover{
+                background-color: rgb(187, 172, 172);  
+            }
+
+            article > .socialButtons > a > img{
+                align-self: center;
+                width: 100%;
+                margin:auto;
+            }
+
+        /*Botón para abrir comentarios*/
+        article > button{
+            width: 20%;
+            margin: auto;
+            margin-bottom: 5%;
+            margin-top: -1%;
+        }
+
+/*---------------------------------------------- COMENTARIOS -----------------------------------------------------------*/
+.commentMenu{
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9;
+    transition: 0.5s;
+    background-color: rgba(199, 33, 33, 0.788);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 0;
+    height: 60%;
+
+}
+    /*Formato de los elementos (comentarios predefinidos y crear comentario)*/
+    .commentMenu > *:not(a){
+        width: 90%;
+        border: solid 2px black;
+    }
+
+    /*Formato de los menús predefinidos*/
+
+    .commentMenu > .preDesignedCommentsContainer{
+        display: flex;
+        height: 40%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 2% auto;
+        overflow-y: scroll;
+    }
+    .commentMenu > .preDesignedCommentsContainer > .preDesignedComment{
+        width: 90%;
+        margin: 1% auto;
+        background-color: rgba(121, 21, 21, 0.63);
+    }
+
+    .commentMenu > .preDesignedCommentsContainer > .preDesignedComment > p:not(:last-child){
+        font-weight: bold;
+    }
+
+    .commentMenu > .preDesignedCommentsContainer > .preDesignedComment > p:first-child{
+        float: left;
+    }
+
+    .commentMenu > .preDesignedCommentsContainer > .preDesignedComment > p:nth-child(2){
+        float: right;
+    }
+
+    .commentMenu > .preDesignedCommentsContainer > .preDesignedComment > p:last-child{
+        display: inline-block;
+        width: 98%;
+        text-align: left;
+        margin: 5% auto 0% auto;
+        clear: both;
+        height: auto;
+    }
+
+    /*Formato de la creación del comentario*/
+    .commentMenu > .createComment{
+        width: 90%;
+        margin: auto;
+        margin-bottom: 3%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .commentMenu > .createComment > *:not(button) {
+        width: 90%;
+        margin: 1% auto;
+    }
+
+    .commentMenu > .createComment > button{
+        width: 50%;
+        margin: 2% auto;
+
+    }
+
+ /*----------------- MEDIAS ------------------*/
+
+ @media (max-width: 1300px){
+    article > .offerContent{
+        flex-direction: column;
+        
+    }
+
+    article  > .offerContent > .photos{
+        order: -1;
+        width: 70%;
+        margin: 3% auto;
+    }
+
+    article > .offerContent > .offerInfo{
+        width: 100%;
+        margin: auto;
+    }
+ }
+
+
+ @media (max-width: 1100px){
+    article > .socialButtons > a{
+        width: 4%;
+        margin-top: 2%;
+        margin-left: 5%;
+    }
+ }
+
+ @media (max-width:850px){
+    .insideGrid > img{
+        width: 20%;
+        margin: 1% auto 0% auto;
+    }
+
+    .insideGrid > h1{
+        width: 98%;
+        margin: auto;
+        margin: 2% 0%;
+    }
+
+    .insideGrid > #space{
+        width: 100%;
+    }
+
+    .insideGrid > nav > a{  
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    aside{
+        width: 95%;
+        margin: 0 auto 4% auto;
+
+    }
+
+    aside > ul  li:not(:first-of-type){
+        margin: 5% 0%;
+    }
+
+    article > p{
+        width: 98%;
+        margin: 5% auto auto auto;
+    }
+
+    article  > .offerContent > .photos{
+        width: 100%;
+    }
+
+    article > .socialButtons > a{
+        width: 6%;
+    }
+
+    footer *{
+        width: 100%;
+        text-align: center;
+    }
+
+    /*Botón para abrir comentarios*/
+    article > button{
+        width: 30%;
+    }
+
+
+}
+
+@media (max-width: 550px){
+    article > .socialButtons > a{
+        width: 9%;
+    }
+
+     /*Botón para abrir comentarios*/
+     article > button{
+        width: 50%;
+    }
+
+    .commentMenu > .createComment  input, .commentMenu > .createComment textarea {
+        width: 90%;
+    }
+
+ }
+
+ @media (max-width: 400px){
+    article > .socialButtons > a{
+        width: 12%;
+        margin-left: 10%;
+    }
+ }

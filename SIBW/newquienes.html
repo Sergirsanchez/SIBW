@@ -1,0 +1,33 @@
+{% extends "padre.html" %}
+
+{% block cssPadre %}{{parent()}}{% endblock %}
+{% block css%}href="newstylequienes.css"{% endblock %}
+{% block title %}Quienes Somos{% endblock %}
+
+{% block main%}
+
+        <h1> Quiénes somos?</h1>
+
+        <p>
+            CoSaS En El Cairo (CSS En El Cairo) es una empresa fictícia de actividades en la ciudad del Cairo creada por Sergi Ruiz para la asignatura de
+            Sistemas de Información Basados en Web, con el objetivo de promover el turismo de tan maravillosa ciudad, la cual alberga un sinfín de aventuras
+            y lugares por descubrir.
+        </p>
+
+        <p>Horario (de la asignatura):</p>
+
+        <ul>
+            <li><span>Prácitcas (Gr1):</span> Jueves, 15.30-17.30</li>
+            <li><span>Teoría:</span> Viernes, 17.30-19.30</li>
+        </ul>
+
+        <p>Disfruta de El Cairo y sobretodo... CUIDADO CON LAS MOMIAS!</p>
+
+        <p></p>                                                             <!-- <p> introducida para que la frase y la imágen se pongan en líneas distintas-->
+
+        <img src="images_and_gifs_portada/mummy_OK.gif" alt="mummy OK"/>
+
+    </main>
+
+
+{% endblock %}

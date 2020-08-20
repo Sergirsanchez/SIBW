@@ -1,0 +1,201 @@
+/*CSS (y HTML5) Reset, para que el formato funcione correctamete independientemente del navegador usado y de su versión*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address,
+big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark,
+audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    color:white;
+
+}
+    
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main {
+    display: block;
+}
+
+/*PARTES COMUNES*/
+/*------------------------------ BODY ---------------------------------------------------*/
+body {  /*Añadir la imagen de fondo*/
+    font-style: italic;
+    background-image: url("images_and_gifs_portada/1200px-All_Gizah_Pyramids.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+/*------------------------------ HEADER Y FOOTER -------------------------------------------------*/
+
+header,footer{
+    width: 99%;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: rgb(75, 4, 4);
+    padding: 1% 0%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.insideGrid{    /*Flex que se reutiliza tanto en el header como en el footer*/
+    width: 98%;
+    margin:auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+    /*Parte de arriba del header (gif + titulo)*/
+    .insideGrid:first-child{    /*Para cambiar el formato a la parte de arriba (Título + gif)*/
+        justify-content: space-between;
+    }
+
+    .insideGrid > h1{
+        width: 50%;
+        margin-right: 25%;
+        text-align: center;
+        font-size: 300%;
+    }
+
+    .insideGrid > img{
+        width: 7%;
+
+    }
+
+    .insideGrid > #space{
+        width: 0;
+    }
+
+    /*Parte de abajo del header (nav)*/
+
+    .insideGrid > nav { /*Dar formato de flex también a los elementos dentro del nav, para que haya espacios equidistantes entre los elementos*/
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 1%;
+
+    }
+
+    .insideGrid > nav > a{  /*Le damos tamaño y le quitamos el subrayado a los enlaces del nav*/
+        width: 30%;
+        text-decoration: none;
+        text-align: center;
+        font-size: x-large;
+    }
+
+    .insideGrid > nav > a:hover{
+        background-color: rgb(51, 3, 3);
+    }
+    
+footer  span{ /*Títulos del address*/
+    text-decoration: underline;
+}
+
+/*PARTE ESPECÍFICA*/
+/*------------------------------------------ MAIN --------------------------------------------*/
+main{          /*Es igual que footer y header, pero eliminando el color de fondo. Se añade aquí para abstraer las partes comunes de las específicas a cada página*/ 
+    width: 99%;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+    /*Título*/
+
+    main > h1{
+        width: 50%;
+        text-align: center;
+        font-size: 300%;
+        margin: 1% 0%;
+    }
+
+    /*Resto*/
+
+    main > *:not(h1){   
+        width: 95%;
+        margin-bottom: 1%;
+    }
+
+    /*Formato de todos los párrafos menos el primero*/
+    main > p:not(:first-of-type){
+        font-weight: bold;
+    }
+
+    main > p:nth-of-type(3){
+        width: 50%;
+        font-size: 150%;
+        text-align: center;
+        background-color: rgba(165, 42, 42, 0.555);
+    }
+
+    main > p:last-of-type{
+        width: 100%;
+    }
+
+    /*Formato de la lista*/
+    main > ul{
+        width: 65%;
+    }
+
+    main > ul  span{
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    /*Formato de la imágen*/
+    main > img{
+        width: 30%;
+    }
+
+    /*----------------- MEDIAS ------------------*/
+
+@media (max-width:850px){
+    .insideGrid > img{
+        width: 20%;
+        margin: 1% auto 0% auto;
+    }
+
+    .insideGrid > h1{
+        width: 98%;
+        margin: auto;
+        margin: 2% 0%;
+    }
+
+    .insideGrid > #space{
+        width: 100%;
+    }
+
+    .insideGrid > nav > a{  
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    main > p:nth-of-type(3){
+        width: 80%;
+        margin-top: 3%;
+    }
+
+    main > img{
+        width: 50%;
+    }
+
+    footer *{
+        width: 100%;
+        text-align: center;
+    }
+
+
+}

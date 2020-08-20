@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sergi Ruiz">
+    {% block cssPadre%}<link rel="stylesheet" type="text/css" href="stylePadre.css">{% endblock %}
+    {% block ajax%}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>{% endblock %}
+    <link rel="stylesheet" type="text/css" {% block css %}{% endblock %}>
+    <title>CSS En El Cairo - {% block title %}{% endblock %}</title>
+    <script src="newabrecomentarios.js"></script>
+    
+</head>
+<body>
+    <header>
+        
+        <div class="insideGrid">
+
+            <img src="images_and_gifs_portada/mummy.gif" alt="gif momia">
+            <p id="space"></p>
+            <h1>CoSaS En El Cairo</h1>
+
+        </div>
+
+        <div class="insideGrid">
+
+            <nav>
+                <a href="quienessomos.php" title="Descubre quienes somos y los horarios de la asignatura">Quiénes somos?</a>
+                <a href="quienessomos.php" title="Descubre quienes somos y los horarios de la asignatura">Horarios</a>
+                <a href="index.php" title="Vuelta a la página de inicio">Inicio</a>
+                <a href="lista.php?listEvents=1" title="Listar eventos">Lista de eventos</a>
+
+                {% if login == 1%}
+
+                    {% if userData['rol'] != 'usuario' %}
+                    <a href="lista.php?listComments=1" title="Listar comentarios">Lista de comentarios</a>
+                    {% endif %}
+
+                    {% if userData['rol'] == 'gestor' or userData['rol'] == 'super' %}
+                    <a href="formulario.php?createEvent=1" title="Crea un nuevo evento">Crear evento</a>
+                    {% endif %}
+
+                    {% if userData['rol'] == 'super' %}
+                    <a href="lista.php?userList=1" title="Lista los usuarios">Listar usuarios</a>
+                    {% endif %}
+
+                {% endif %} 
+            </nav>
+
+        </div>
+
+    </header>
+    
+    <main>
+        {% block main %} 
+
+            {% block aside %}
+             <!--------------------------------------------------------- ASIDE ---------------------------------------------------->
+                 <aside>
+
+                    <div class="login">
+                        <h1>Login</h1>
+                
+                        {% if login == 0%}
+                            <form action="{{filename}}" method="POST" id="loginForm">
+                                <div class="rows">
+                                    <label for="user" >Usuario:</label>
+                                    <input type="text" placeholder="Usuario" name="user" title="Introduce tu nombre de usuario" value="{{username}}">
+                                    <span class="error">{{loginError['user']}}</span>   
+                                </div>
+                                
+                        
+                                <div class="rows">
+                                    <label for="password">Clave:</label>
+                                    <input type="password" placeholder="Contraseña" name="password" title="Introduce tu contraseña">
+                                    <span class="error">{{loginError['password']}}</span>    
+                                </div>
+                        
+                                <input type="submit" name="login" value="Login">
+
+                            </form>
+
+                            <form action="formulario.php" method="POST" id="createUser">
+                                <input type="submit" name="updateUserForm" value="Crear usuario">   <!--Ya tenía creado el form de actualizar datos de usuario, y lo reutilizo-->
+                                <input type="hidden" name="createUser" value="1">
+                                <input type="hidden" name="OK" value="0">
+                            </form>
+
+                        {% else %}
+                            <form action="{{filename}}" method="POST" id="unloginForm">
+                                <div class="rows">    
+                                    <p>Ahora mismo estás logueado</p>
+                                    <p><span>Nick: </span>{{userData['name']}}</p>
+                                    <p><span>Correo: </span>{{userData['email']}}</p>
+                                    <p><span>Rol: </span>{{userData['rol']}}</p>
+                                </div>      
+                             
+                                <input type="submit" name="unlogin" value="Desloguearme">
+                                
+                            </form>
+
+                            <form action="formulario.php" method="POST" id="updateUserData">
+                                <input type="submit" name="updateUserForm" value="Modificar datos personales">
+                                <input type="hidden" name="OK" value="0">
+                                <input type="hidden" name="updateUserID" value="{{userData['id']}}">
+                                <input type="hidden" name="updateUsername" value="{{userData['name']}}">
+                                <input type="hidden" name="updateEmail" value="{{userData['email']}}">
+                               <!-- <input type="hidden" name="updatePassword" value="{{userData['password']}}"> -->
+                             </form>
+        
+                        {% endif %}
+                    </div>
+
+                    <div class="whatToDo">
+
+                        <h1>Qué puedo hacer en El Cairo?</h1>
+                        <p>En CoSaS En El Cairo (CSS En El Cairo) hemos escogido para tí lugares que quizás te pueden interesar visitar en El Cairo</p>
+
+                        <ul>
+                            <li><a href="https://en.wikipedia.org/wiki/Egyptian_Museum" title="Museo Egipcio de El Cairo" target="_blank">Museo Egipcio de El Cairo</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Khan_el-Khalili" title="Jan el-Jalili" target="_blank">Jan el-Jalili</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Cairo_Citadel" title="Ciudadela de El Cairo" target="_blank">Ciudadela de El Cairo</a></li>
+                        </ul>
+
+                    </div>
+                    
+
+                </aside>
+            {% endblock %}
+        
+
+            
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="insideGrid">
+
+            <p>CoSaS En El Cairo Company © 2020-2021</p>
+            <address>
+
+                <p>Sergi Ruiz Sánchez</p>
+                <p><span>Dirección:</span> Periodista Daniel Saucedo Aranda, s/n 18071 - Granada, Spain</p>
+                <p><span>Tlfn:</span> +34 666 666 666</p>
+
+            </address>
+
+        </div>
+    </footer>
+    
+</body>
+</html>

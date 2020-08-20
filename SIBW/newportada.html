@@ -1,0 +1,62 @@
+{% extends "padre.html" %}
+
+{% block cssPadre %}{{parent()}}{% endblock %}
+{% block css%}href="newstyleportada.css"{% endblock %}
+{% block title %}Portada{% endblock %}
+
+{% block main%}
+
+        {% block aside%}
+            {{parent()}}
+        {% endblock %}
+        
+        <article>        
+            
+                {% if eventNames|length != 0%}
+                    {%for i in 0..(eventNames|length)-1 %}  <!--Para cada evento, lo introducimos en la portada-->
+                        <div class="event">
+                            <a href="evento.php?nameEvent={{eventNames[i]}}" title="{{eventNames[i]}}"> <img src="images_and_gifs_portada/{{indexPhotos[i]}}"> <span>{{eventNames[i]}}</span> </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}       
+                
+        </article>
+
+        <!--Algunos ejemplos de por los que hemos llegado a la página-->
+        {% if URLNotValid == 1%}
+        <script language="javascript">alert("URL no válida")</script> <!--Lanzamos un alert informando al usuario del error-->
+        {% endif %}
+
+        {% if updateUserSent == 1%}
+        <script language="javascript">alert("Datos modificados correctamente")</script> <!--Lanzamos un alert informando al usuario de la actualización correcta de los datos-->
+        {% endif %}
+
+        {% if createEventSent == 1%}
+        <script language="javascript">alert("Evento creado correctamente")</script> <!--Lanzamos un alert informando al usuario de la actualización correcta de los datos-->
+        {% endif %}
+
+        {% if createEventSent == 2 or updateEventSent == 2 %}
+        <script language="javascript">alert("Evento guardado pero no publicado")</script> <!--Lanzamos un alert informando al usuario de la actualización correcta de los datos-->
+        {% endif %}
+
+        {% if createUserSent == 1%}
+        <script language="javascript">alert("Usuario creado correctamente")</script> <!--Lanzamos un alert informando al usuario de la creación de este-->
+        {% endif %}
+
+        {% if updateEventSent == 1%}
+        <script language="javascript">alert("Evento actualizado correctamente")</script> <!--Lanzamos un alert informando al usuario de la creación de este-->
+        {% endif %}
+
+        {% if pirate == 1%}
+        <script language="javascript">alert("No seas piratilla y no intentes acceder a páginas a las que no tienes permisos ;) ")</script> <!--Lanzamos un alert informando al usuario de la creación de este-->
+        {% endif %}
+
+        {% if badOption == 1%}
+        <script language="javascript">alert("Para acceder a cualquier formulario usa mejor los menús")</script> <!--Lanzamos un alert informando al usuario de la creación de este-->
+        {% endif %}
+
+        {% if badOption == 2%}
+        <script language="javascript">alert("Para acceder a cualquier lista usa mejor los menús")</script> <!--Lanzamos un alert informando al usuario de la creación de este-->
+        {% endif %}
+
+{% endblock %}

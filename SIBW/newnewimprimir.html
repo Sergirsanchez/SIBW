@@ -1,0 +1,17 @@
+{% extends "evento.html"%}
+
+{% block cssPadre %}{{parent()}}{% endblock %}
+{% block css%} href="newstyleimprimir.css" {% endblock %}
+{% block title%} Imprimir {% endblock%}
+
+{%block main%}
+
+    {% block article%}
+        {{parent()}}
+
+        {% block buttons %}{% endblock %}
+
+    {%endblock %}
+
+
+{% endblock %}

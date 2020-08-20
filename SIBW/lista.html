@@ -1,0 +1,248 @@
+{% extends "padre.html" %}
+
+{% block cssPadre %}{{parent()}}{% endblock %}
+{% block css %}href="stylelista.css"{% endblock %}
+{% block ajax %} {{parent()}} {% endblock %}
+{% block title %}Portada{% endblock %}
+
+{% block main%}
+
+        {% block aside%}
+            {{parent()}}
+        {% endblock %}
+      
+    <div class="listContainer">
+        <h2>Formulario de búsqueda:</h2>
+        
+        <div class="textBlock">
+            <p>Selecciona los parámetros que necesites para ajustar la búsqueda a lo que más necesites.</p>
+
+            {% if result['commentList'] == 1%}
+                <p>(Si no se introduce número se listan todos los comentarios)</p>
+            {% else %}
+                <p>(Si no se introduce número se listan todos los eventos)</p>
+            {% endif %}
+        </div>
+        
+
+        <form method="POST" id="FormSearch" action="lista.php">
+            <label for="SearchEventName">Nombre del evento </label>
+            <input type="text" placeholder="Número de evento" id="SearchEventName" name="SearchEventName" title="Introduce el nombre del evento">
+
+            {% if userData['rol'] == "super" or userData['rol'] == "gestor" %}
+                <div class="numberOfEvent">
+                    <label for="event">Número del evento </label>
+                    <input type="text" placeholder="Número de evento" id="event" name="event" title="Introduce el número del evento">
+                </div>
+
+                <div class="NotPublishedData">
+                    <label for="noPublishedCheckBox">Añadir eventos no publicados: </label>
+                    <input type="checkbox" id="noPublishedCheckBox" name="published"> 
+                </div>
+            {% endif %}
+            <input type="submit" value="Enviar">
+            <input  type="hidden" name="commentList" value="{{result['commentList']}}">
+            <input  type="hidden" name="eventList" value="{{result['eventList']}}">
+            
+        </form>
+
+        <h2>Resultados:</h2>
+
+        <div class="resultsContainer">
+
+        
+        {% if result['eventNames']|length == 0 %}
+            <div class="result">
+                <p>No se obtuvieron resultados.</p>
+            </div>
+
+        {% else %}
+        
+            {% if result['singleEvent'] == 0%} <!--Listamos todos los eventos/comentarios-->
+                    {% set currentEventId  = 1%}  <!---Para poder indicar el número del evento-->
+                    {% set currentEventName = result['eventNames'][0] %}
+
+            {% else %}  <!--Listamos solo un evento/los comentarios de un solo evento-->
+            {% set currentEventId = result['numberEvent'] %}
+            
+            {% set currentEventName = result['eventNames'] %}
+
+            {% endif %}
+
+            {% if (result['names']|length) > 0 %}   <!--Si el campo tiene más de 0 elementos, estamos en una lista de comentarios-->
+                
+                {% for i in 0..((result['names']|length)-1) %}
+                    
+                        <div class="result">
+                                        <div class ="firstLeft">
+                                            {% if result['singleEvent'] == 0 %}
+                                                {% if result['eventNames'][i] != currentEventName %}
+                                                    {% set currentEventId = currentEventId + 1 %}
+                                                    {% set currentEventName = result['eventNames'][i] %}
+                                                {% endif %}
+                                            {% endif %}
+
+                                            <p class="idEvent">Evento {{currentEventId}}:</p>
+
+                                            {% if result['singleEvent'] == 0%}
+                                                <p class="titleEvent">({{result['eventNames'][i]}})</p>
+                                            {% else %}
+                                                <p class="titleEvent">({{currentEventName}})</p>
+                                            {% endif %}
+                                        </div>
+
+                                    
+                                        <div class="preDesignedComment">  
+                                            <p>{{result['names'][i]}}</p>
+                                            <p>{{result['dates'][i]}}</p>
+
+                                            {% if result['modify'][i] == 0%}
+                                                <pre>{{result['comments'][i]}}</pre>
+                                            {% else %}
+                                            <pre>(mensaje modificado por moderador)     {{result['comments'][i]}}</pre>
+                                            {% endif %}
+                                        </div>
+
+                                    <form action="formulario.php" method="POST" title="Modificar comentario">      
+                                        <input type="hidden" name="modify" value="1">
+                                        <input type="hidden" name="eventName" value="{{result['eventNames'][i]}}">
+                                        <input type="hidden" name="userComment" value="{{result['names'][i]}}">
+                                        <input type="hidden" name="emailComment" value="{{result['emails'][i]}}">
+                                        <input type="hidden" name="dateComment" value="{{result['dates'][i]}}">
+                                        <input type="hidden" name="comment" value="{{result['comments'][i]}}">
+                                        <input type="hidden" name="originalComment" value="{{result['comments'][i]}}">
+                                        <input type="hidden" name="commentForm" value="1">
+                                        <input src="images_and_gifs_portada/pencil.png" type="image" value="">
+                                    </form>
+
+                                    <form action="lista.php" method="POST" title="Eliminar comentario">
+                                        <input type="hidden" name="delete" value="1">
+                                        <input type="hidden" name="eventName" value="{{result['eventNames'][i]}}">
+                                        <input type="hidden" name="user" value="{{result['names'][i]}}">
+                                        <input type="hidden" name="date" value="{{result['dates'][i]}}">
+                                        <input type="hidden" name="comment" value="{{result['comments'][i]}}">
+                                        <input type="hidden" name="deleteComment" value="1">
+                                        <input  src="images_and_gifs_portada/cancel.png" type="image" value="">
+                                    </form>
+
+                        </div>
+                    
+                {% endfor %}
+
+            {% else %}  <!-- Estamos en una lista de eventos-->
+                       
+                {% if result['singleEvent'] == 1%} <!--Si es solo un evento individual, la estructura cambia-->
+                    
+                    <div class="result">
+
+                        <div class ="secondLeft">
+
+                            <p class="idEvent">Evento {{result['eventNumber']}}:</p>
+
+                            <a class ="linkEvents" href="evento.php?nameEvent={{result['textoPagina']['titulo']}}" title="{{result['textoPagina']['titulo']}}">
+                                {{result['textoPagina']['titulo']}}</a>
+
+                        </div>
+
+                        <form action="formulario.php" method="POST" title="Modificar evento">      
+                            <input type="hidden" name="modify" value="1">
+                            <input type="hidden" name="eventForm" value="1">                            
+                            <input type="hidden" name="eventName" value="{{result['textoPagina']['titulo']}}">
+                            <input type="hidden" name="eventDescription" value="{{result['textoPagina']['descripcion']}}">
+                            <input type="hidden" name="howPickup" value="{{result['textoPagina']['texto_recogida']}}">
+                            <input type="hidden" name="linkPickup" value="{{result['textoPagina']['enlace_recogida']}}">
+                            <input type="hidden" name="textPickup" value="{{result['textoPagina']['texto_enlace']}}">
+                            <input type="hidden" name="beginningTime" value="{{result['textoPagina']['hora_inicio']}}">
+                            <input type="hidden" name="endTime" value="{{result['textoPagina']['hora_fin']}}">
+                            <input type="hidden" name="tripAdvisorLink" value="{{result['textoPagina']['enlace_tripadvisor']}}">
+                            <input type="hidden" name="tags" value="{{result['tags']}}">
+                            <input type="hidden" name="photos" value="{{result['fotosPagina']}}">
+                            <input src="images_and_gifs_portada/pencil.png" type="image" value="">
+                        </form>
+
+                        <form action="lista.php" method="POST" title="Eliminar evento">
+                            <input type="hidden" name="delete" value="1">
+                            <input type="hidden" name="eventName" value="{{result['eventNames'][i]}}">
+                            <input type="hidden" name="deleteList" value="1">
+                            <input  src="images_and_gifs_portada/cancel.png" type="image" value="">
+                        </form>
+                    </div>
+            
+               {% else %}   <!--Vamos a introducir los datos usando AJAX--> 
+                    <div id="resultAJAX">
+                        
+                        {% for i in 0..((result['textoPagina']|length)-1)%} 
+
+                            <div class="result">
+
+                                <div class ="secondLeft">
+
+                                    <p class="idEvent">Evento {{i+1}}:</p>
+
+                                    <a class ="linkEvents" href="evento.php?nameEvent={{result['textoPagina'][i]['titulo']}}" title="{{result['textoPagina'][i]['titulo']}}">
+                                        {{result['textoPagina'][i]['titulo']}}</a>
+
+                                </div>
+
+                                {% if userData['rol'] == "super" or userData['rol'] == "gestor" %}
+
+                                    <form action="formulario.php" method="POST" title="Modificar evento">      
+                                        <input type="hidden" name="modify" value="1">
+                                        <input type="hidden" name="eventForm" value="1">                            
+                                        <input type="hidden" name="eventName" value="{{result['textoPagina'][i]['titulo']}}">
+                                        <input type="hidden" name="eventDescription" value="{{result['textoPagina'][i]['descripcion']}}">
+                                        <input type="hidden" name="howPickup" value="{{result['textoPagina'][i]['texto_recogida']}}">
+                                        <input type="hidden" name="linkPickup" value="{{result['textoPagina'][i]['enlace_recogida']}}">
+                                        <input type="hidden" name="textPickup" value="{{result['textoPagina'][i]['texto_enlace']}}">
+                                        <input type="hidden" name="beginningTime" value="{{result['textoPagina'][i]['hora_inicio']}}">
+                                        <input type="hidden" name="endTime" value="{{result['textoPagina'][i]['hora_fin']}}">
+                                        <input type="hidden" name="tripAdvisorLink" value="{{result['textoPagina'][i]['enlace_tripadvisor']}}">
+                                        <input type="hidden" name="tags" value="{{result['tags'][i]}}">
+                                        <input type="hidden" name="photos" value="{{result['fotosPagina'][i]}}"> 
+                                        <input src="images_and_gifs_portada/pencil.png" type="image" value="">
+                                    </form>
+
+                                    <form action="lista.php" method="POST" title="Eliminar evento">
+                                        <input type="hidden" name="delete" value="1">
+                                        <input type="hidden" name="eventName" value="{{result['eventNames'][i]}}">
+                                        <input type="hidden" name="deleteList" value="1">
+                                        <input  src="images_and_gifs_portada/cancel.png" type="image" value="">
+                                    </form>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        
+                    </div>
+               {% endif %}
+            {% endif %}
+        {% endif %}
+        </div>
+    </div>
+
+    <!--Situaciones que requieren de avisos-->
+
+    {% if result['removed'] == "comment" %}
+        <script language="javascript">alert("Comentario eliminado correctamente")</script>
+    {% endif %}
+
+    {% if result['removed'] == "list" %}
+        <script language="javascript">alert("Evento eliminado correctamente")</script>
+    {% endif %}
+
+    {% if URLNotValid == 1%}
+    <script language="javascript">alert("URL no válida")</script> <!--Lanzamos un alert informando al usuario del error-->
+    {% endif %}
+
+    {% if commentSent == 1%}
+    <script language="javascript">alert("Comentario modificado correctamente")</script> 
+    {% endif %}
+
+    {% if intError == 1%}
+    <script language="javascript">alert("Solo puede introducirse el NÚMERO del evento")</script>
+    {% endif %}
+
+{% endblock %}
+
+
+
+

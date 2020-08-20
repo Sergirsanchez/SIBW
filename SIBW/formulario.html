@@ -1,0 +1,531 @@
+{% extends "padre.html" %}
+
+{% block cssPadre %}{{parent()}}{% endblock %}
+{% block css%}href="styleformulario.css"{% endblock %}
+{% block title %}Portada{% endblock %}
+
+{% block main%}
+
+        {% block aside%}
+            {{parent()}}
+        {% endblock %}
+      
+        {% if form['commentForm'] == 1%} <!--Estamos en un formulario de comentario-->
+            {% if form['OK'] == 0 %}
+
+                <form method="post" action="formulario.php" class="edit">
+                    <h1>Editar Comentario</h1>
+
+                    <div class="editBlock">
+
+                        <label for="editCommentText">Comentario:</label>
+                        <textarea class="editCommentText" rows="6" cols="50" name="comment">{{form['comment']}} </textarea>
+                        <span>{{form['commentError']}}</span> 
+                        
+                    </div>
+
+
+                    <div class="buttonBlock">
+
+                        <input type="submit" value="Enviar">
+                        
+                    </div>
+                    
+                    <input type="hidden" name="OK" value="0">  
+                    <input type="hidden" name="commentForm" value="1">    
+                    <input type="hidden" name="userComment" value="{{form['userComment']}}">      
+                    <input type="hidden" name="dateComment" value="{{form['dateComment']}}">      
+                    <input type="hidden" name="eventName" value="{{form['eventName']}}">
+                    <input type="hidden" name="emailComment" value="{{form['emailComment']}}">
+                    <input type="hidden" name="originalComment" value="{{form['originalComment']}}">      
+
+                </form>
+
+            {% else %}
+                <form method="post" action="formulario.php" class="edit">
+                    <h1>Checkea que los campos sean correctos</h1>
+
+                    <div class="editBlock">
+
+                        <label for="editCommentText">Comentario:</label>
+                        <textarea class="editCommentText" rows="6" cols="50" name="editCommentText" disabled>{{form['comment']}} </textarea>
+                        <span>{{form['commentError']}}</span> 
+                        
+                    </div>
+
+
+                    <div class="buttonBlock">
+
+                        <input type="submit" value="Enviar">
+                        
+                    </div>
+                    
+                    <input type="hidden" name="OK" value="1">  
+                    <input type="hidden" name="commentForm" value="1">
+                    <input type="hidden" name="userComment" value="{{form['userComment']}}">      
+                    <input type="hidden" name="dateComment" value="{{form['dateComment']}}">      
+                    <input type="hidden" name="eventName" value="{{form['eventName']}}">
+                    <input type="hidden" name="originalComment" value="{{form['originalComment']}}">
+                    <input type="hidden" name="emailComment" value="{{form['emailComment']}}">
+                    <input type="hidden" name="comment" value="{{form['comment']}}">          
+
+                </form>
+        
+            {% endif %}
+        {% endif %}
+
+        {% if form['userForm'] == 1%}   <!--Formulario para modificar los datos personales propios-->
+        
+            {% if form['OK'] == 0 %}
+
+                <form method="post" action="formulario.php" class="edit">
+                    <h1>Editar datos personales</h1>
+
+                    <div class="editBlock">
+                        <p>* Campos obligatorios</p>
+                    </div>
+
+                    <div class="editBlock">
+
+                        <label for="updateUsername">*Nombre de usuario:</label>
+                        <input type="text" value = "{{form['userName']}}" name="updateUsername">
+                        <span>{{form['usernameError']}}</span> 
+                        
+                    </div>
+
+
+                    <div class="editBlock">
+
+                        <label for="updateEmail">*Correo:</label>
+                        <input type="text" value = "{{form['userEmail']}}" name="updateEmail">
+                        <span>{{form['emailError']}}</span> 
+                        
+                    </div>
+
+                    <div class="editBlock">
+
+                        <label for="updatePassword">*Contraseña:</label>
+                        <input type="text" value = "{{form['userPassword']}}" name="updatePassword">
+                        <span>{{form['passwordError']}}</span> 
+                        
+                    </div>
+
+                    {% if form['createUser'] != 1%}
+                    <div class="editBlock">
+
+                        <label for="updateNewPassword"> Nueva contraseña:</label>
+                        <input type="text" value = "{{form['userNewPassword']}}" name="updateNewPassword">
+                        
+                    </div>
+                    {% endif %}
+
+
+                    <div class="buttonBlock">
+
+                        <input type="submit" value="Enviar">
+                        
+                    </div>
+                    
+                    <input type="hidden" name="updateUserForm">
+                    <input type="hidden" name="OK" value="0">   
+                    <input type="hidden" name="updateUserID" value="{{form['userID']}}">
+                    <input type="hidden"  name="check" value="0">
+                    <input type="hidden" name="createUser" value="{{form['createUser']}}";>
+                    
+
+                </form>
+            {% else %}
+
+                <form method="post" action="formulario.php" class="edit">
+                    <h1>Checkea que todo esté correcto</h1>
+
+                    <div class="editBlock">
+
+                        <label for="updateUsername">*Nombre de usuario:</label>
+                        <input type="text" value = "{{form['userName']}}" name="updateUsername" disabled>    
+                        
+                    </div>
+
+                    
+                    <div class="editBlock">
+
+                        <label for="updateEmail">*Correo:</label>
+                        <input type="text" value = "{{form['userEmail']}}" name="updateEmail" disabled>
+                         
+                    </div>
+
+                    <div class="editBlock">
+
+                        <label for="updatePassword">*Contraseña:</label>
+                        <input type="text" value = "{{form['userPassword']}}" name="updatePassword" disabled>    
+                        
+                    </div>
+
+                    {% if form['createUser'] != 1%}
+                    <div class="editBlock">
+
+                        <label for="updateNewPassword"> Nueva contraseña:</label>
+                        <input type="text" value = "{{form['userNewPassword']}}" name="updateNewPassword" disabled>
+                        
+                    </div>
+                    {% endif %}
+
+
+                    <div class="buttonBlock">
+
+                        <input type="submit" value="Enviar">
+                        
+                    </div>
+                    
+                    <input type="hidden" name="updateUserForm">
+                    <input type="hidden" name="OK" value="1">   
+                    <input type="hidden" name="updateUserID" value="{{form['userID']}}">
+                    <input type="hidden" name="sendUsername" value="{{form['userName']}}";>
+                    <input type="hidden" name="sendEmail" value="{{form['userEmail']}}";>
+                    <input type="hidden" name="sendPassword" value="{{form['userPassword']}}";>
+                    <input type="hidden" name="createUser" value="{{form['createUser']}}";>
+                    <input type="hidden" name="sendNewPassword" value="{{form['userNewPassword']}}";>
+                    
+
+                </form>
+            {% endif %}
+        {% endif %}
+
+        {% if form['eventForm'] == 1%}    <!--Formulario de creación/modificación de un evento-->
+                {% if form['OK'] == 0%}
+                    <form method="post" action="formulario.php" class="edit" enctype="multipart/form-data">
+                        <h1>Añadir evento</h1>
+
+                        <p>* Campos obligatorios </p>
+
+                        <div class="editBlock">
+
+                            {% if form['modify'] == 1%} <!--Al crear la base de datos con el nombre del evento como clave primaria, no podemos modificarlo-->
+                                <p>* El nombre del evento no se puede modificar</p>
+                                <input type="hidden" name="eventName" value="{{form['eventName']}}">
+                            {% else %}
+                                <label for="eventName" class="moveRight">* Nombre del evento:</label>
+                                <input type="text" value = "{{form['eventName']}}" name="eventName">
+                                <span>{{form['eventNameError']}}</span> 
+                            {% endif %}
+                                
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="eventDescription" class="moveRight">* Descripción:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="eventDescription">{{form['eventDescription']}}</textarea>
+                            <span>{{form['eventDescriptionError']}}</span> 
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="howPickup"> Cómo será la recogida?(Máximo 180 caracteres):</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="howPickup">{{form['howPickup']}}</textarea>
+                            <span>{{form['howPickupError']}}</span> 
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="linkPickup">Enlace del lugar de recogida:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="linkPickup">{{form['linkPickup']}}</textarea>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="textPickup">Texto que redirigirá al enlace:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="textPickup">{{form['textPickup']}}</textarea>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="beginningTime" class="redistribute">* Hora de inicio:</label>
+                            <input type="text" value = "{{form['beginningTime']}}" name="beginningTime">
+                            <span>{{form['beginningTimeError']}}</span> 
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="endTime" class="redistribute">* Hora de fin:</label>
+                            <input type="text" value = "{{form['endTime']}}" name="endTime">
+                            <span>{{form['endTimeError']}}</span> 
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="tags" class="moveRight">Etiquetas(separadas por comas):</label>
+                            <input type="text" value = "{{form['tags']}}" name="tags">
+                            <span>{{form['tagsError']}}</span> 
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="tripAdvisorLink">Enlace al evento en TripAdvisor:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="tripAdvisorLink">{{form['tripAdvisorLink']}}</textarea>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="images[]">Imágenes del evento:</label>
+                            <input type="file" name="images[]" multiple>
+                            <span>{{form['imageError']}}</span>
+                            
+                        </div>
+
+                        <div class="editBlock">
+                            <span>(Cada vez que le das a "Enviar", todas las imagenes son enviadas a un fichero temporal, así que no te preocupes
+                                si pone que no se ha seleccionado ninguna ;) )</span>
+                        </div>
+
+                        {% if form['modify'] == 1 %} <!--Vamos a mostrar las imágenes que ya posee el evento, y permitiremos borrarlas-->
+
+                            <!-- Al tener problemas al pasar arrays de HTML a PHP, vamos a trabajar con las imágenes como un solo string, donde estas están separadas por comas,
+                                y aquí las iremos separando una a una -->
+                            {% set imagesSplitted = form['fotosPagina']|split(",") %}
+
+                                                        
+                            {% if imagesSplitted|length > 0 and form['fotosPagina'] is not empty and imagesSplitted[0] != "no-image.jpg"%}  <!--Si tenemos más de una imagen y no es "no-imagen"-->
+
+                                <span id="imagesOfEvent">Imagenes del evento:</span>
+                                <div class="containerImages">   <!--Aquí tendremos todas las imágenes y formularios-->
+                                    {% for i in 0..(imagesSplitted|length-1) %}
+                                            <div class="showImages">
+
+                                                <img src="images_and_gifs_portada/{{imagesSplitted[i]|trim}}">  <!--Trim necesario para borrar el primer espacio del nombre-->
+                                                
+                                                <div class="buttonBlock">
+                                                    <input type="submit" name="deleteImage_{{i}}" value="Eliminar">   <!--Si queremos eliminar una imagen, obtenemos su evento y el nombre de esta-->
+                                                    <input type="hidden" name="eventName" value="{{form['eventName']}}">
+                                                    <input type="hidden" name="photo_{{i}}" value="{{imagesSplitted[i]}}" >
+
+
+                                                </div>
+                                            
+                                            </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                        {% endif %}
+                        
+
+
+                        <div class="buttonBlock">
+
+                            <input type="submit" name="send" value="Enviar">
+                            
+                        </div>
+                        
+                        <input type="hidden" name="eventForm" >
+                        <input type="hidden" name="OK" value="0">
+                        <input type="hidden" name="modify" value="{{form['modify']}}">  
+                        <input type="hidden" name="check" value="1">
+                        <input type="hidden" name="photos" value="{{form['fotosPagina']}}">                      
+
+                    </form>
+                {% else %}
+
+                    <form method="post" action="formulario.php" class="edit" enctype="multipart/form-data">
+                        <h1>Añadir evento</h1>
+
+                        <p>* Campos obligatorios </p>
+
+                        <div class="editBlock">
+
+                            {% if form['modify'] == 1%}
+                                <p>* El nombre del evento no se puede modificar</p>
+                                <input type="hidden" name="eventName" value="{{form['eventName']}}">
+                            {% else %}
+                                <label for="eventName" class="moveRight">* Nombre del evento:</label>
+                                <input type="text" value = "{{form['eventName']}}" name="eventName" disabled>
+                            {% endif %}
+                                
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="eventDescription">* Descripción:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="eventDescription" disabled>{{form['eventDescription']}}</textarea>
+
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="howPickup"> Cómo será la recogida?(Máximo 180 caracteres):</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="howPickup" disabled>{{form['howPickup']}}</textarea>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="linkPickup">Enlace del lugar de recogida:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="linkPickup" disabled>{{form['linkPickup']}}</textarea>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="textPickup">Texto que redirigirá al enlace:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="textPickup" disabled>{{form['textPickup']}}</textarea>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="beginningTime" class="redistribute">* Hora de inicio:</label>
+                            <input type="text" value = "{{form['beginningTime']}}" name="beginningTime" disabled>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="endTime" class="redistribute">* Hora de fin:</label>
+                            <input type="text" value = "{{form['endTime']}}" name="endTime" disabled>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="tags" class="moveRight">Etiquetas(separadas por comas):</label>
+                            <input type="text" value = "{{form['tags']}}" name="tags" disabled>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="tripAdvisorLink">Enlace al evento en TripAdvisor:</label>
+                            <textarea class="editCommentText" rows="6" cols="50" name="tripAdvisorLink" disabled>{{form['tripAdvisorLink']}}</textarea>
+                            
+                        </div>
+
+                        <div class="editBlock">
+
+                            <label for="images[]">Imágenes del evento:</label>
+                            <input type="file" name="images[]" multiple disabled>
+                            
+                        </div>
+
+                        {% if form['modify'] == 1 %} <!--Vamos a mostrar las imágenes que ya posee el evento, y permitiremos borrarlas-->
+
+                        <!-- Al tener problemas al pasar arrays de HTML a PHP, vamos a trabajar con las imágenes como un solo string, donde estas están separadas por comas,
+                            y aquí las iremos separando una a una -->
+                        {% set imagesSplitted = form['fotosPagina']|split(",") %}
+
+                                                    
+                        {% if imagesSplitted|length > 0 and form['fotosPagina'] is not empty and imagesSplitted[0] != "no-image.jpg"%}  <!--Si tenemos más de una imagen-->
+
+                            <span id="imagesOfEvent">Imagenes del evento:</span>
+                            <div class="containerImages">   <!--Aquí tendremos todas las imágenes y formularios-->
+                                {% for i in 0..(imagesSplitted|length-1) %}
+                                    <div class="showImages">
+
+                                        <img src="images_and_gifs_portada/{{imagesSplitted[i]|trim}}">  <!--Trim necesario para borrar el primer espacio del nombre-->
+                                        
+                                        <div class="buttonBlock">
+                                            <input type="submit" name="deleteImage_{{i}}" value="Eliminar" disabled>   <!--Si queremos eliminar una imagen, obtenemos su evento y el nombre de esta-->
+
+                                        </div>
+                                    
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
+                    {% endif %}
+
+
+                        <div class="buttonBlock">
+
+                            <input type="submit" value="Enviar">
+                            <input type="submit" name="cancel" value="Guardar sin publicar">
+                            
+                        </div>
+                        
+                        <input type="hidden" name="eventForm" value="1">
+                        <input type="hidden" name="OK" value="1">
+                        <input type="hidden" name="modify" value="{{form['modify']}}">  
+                        <input type="hidden" name="eventName" value="{{form['eventName']}}">                         
+                        <input type="hidden" name="eventDescription" value="{{form['eventDescription']}}">                         
+                        <input type="hidden" name="howPickup" value="{{form['howPickup']}}">                         
+                        <input type="hidden" name="linkPickup" value="{{form['linkPickup']}}">                         
+                        <input type="hidden" name="textPickup" value="{{form['textPickup']}}">                         
+                        <input type="hidden" name="beginningTime" value="{{form['beginningTime']}}">                         
+                        <input type="hidden" name="endTime" value="{{form['endTime']}}">                         
+                        <input type="hidden" name="tags" value="{{form['tags']}}">                         
+                        <input type="hidden" name="tripAdvisorLink" value="{{form['tripAdvisorLink']}}">                        
+
+                    </form>
+                {% endif %}
+        {% endif %}
+
+        {%if form['updateUserRol'] == 1%} <!--Formulario para cambiar el rol de un usuario-->
+            <form method="post" action="formulario.php"class="modifyUserRolForm">
+                <div class="editBlock"> <!--Mostramos algunos datos sobre el usuario en cuestión-->
+                    <p><span>Nombre: </span> {{form['userName']}}</p>
+                    <p><span>Correo: </span> {{form['userEmail']}}</p>
+                </div>
+
+                <div class="editBlock">
+
+                    {% if userData['name'] == form['userName']%}  <!--Si el usuario está accediendo a sus propias credenciales, mostramos mensaje-->
+                        <span>Un superusuario no puede modificar sus propias credenciales</span>
+                        <input type="hidden" name="noModify" value="1">
+                    {% else %}
+                        <div class="optionBlock">
+                            <label for="user">Usuario</label>
+                            {% if form['userRol'] == "usuario" %}
+                                <input type="radio" id="user" name="userType" value="usuario" checked>
+                            {% else %}
+                                <input type="radio" id="user" name="userType" value="usuario">
+                            {% endif %}
+                        </div>
+
+                        <div class="optionBlock">
+                            <label for="moderator">Moderador</label>
+                            {% if form['userRol'] == "moderador" %}
+                                <input type="radio" id="moderator" name="userType" value="moderador" checked>
+                            {% else %}
+                                <input type="radio" id="moderator" name="userType" value="moderador">
+                            {% endif %}
+                        </div>
+
+                        <div class="optionBlock">
+                            <label for="manager">Gestor</label>
+                            {% if form['userRol'] == "gestor" %}
+                                <input type="radio" id="manager" name="userType" value="gestor" checked>
+                            {% else %}
+                                <input type="radio" id="manager" name="userType" value="gestor">
+                            {% endif %}
+                        </div>
+
+                        <div class="optionBlock">
+                            <label for="superUser">Superusuario</label>
+                            {% if form['userRol'] == "super" %}
+                                <input type="radio" id="superUser" name="userType" value="super" checked>
+                            {% else %}
+                                <input type="radio" id="superUser" name="userType" value="super">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                  
+                </div>
+
+                <div class="buttonBlock">
+
+                    <input type="submit" value="Enviar">
+                    <input type="hidden" name="modifyUserRol" value="1">
+                    <input type="hidden" name="userModified" value="1"> <!--Indicamos que el usuario ya ha sido modificado-->
+                    <input type="hidden" name="userName" value="{{form['userName']}}">
+                    
+                </div>
+            </form>
+        {% endif %}
+{% endblock %}

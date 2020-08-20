@@ -1,0 +1,193 @@
+{% extends "padre.html" %}
+
+{% block cssPadre %}{{parent()}}{% endblock %}
+{% block css %} href="newstyleevento.css" {% endblock %}
+{% block title %} Evento {% endblock %}
+
+
+{% block main %}
+
+    <!------------------------------Añadimos en una variable global declarada en JavaScript todas las palabras censuradas-------------------------------------->
+    {% block censuraPalabras%}
+            {% set censuradas = evento['censuradas'] %}
+
+            {% for i in 0..(censuradas|length)-1 %}
+                <script>enterWords("{{censuradas[i]}}");</script>
+            {% endfor %}
+    {% endblock %}
+
+    {% block aside %}
+        {{parent()}}
+    {% endblock %}
+
+    {% block article %}
+
+
+    <!-------------------------------------------------------- ARTICLE ---------------------------------------------------->
+    <article> 
+        <!------------------------------------------------------------ OFERTA X ----------------------------------------------------->   
+        <p>{{evento['textoPagina']['titulo']}}</p>
+
+        <div class="offerContent">
+
+            
+            
+            <div class="offerInfo">
+                <div class="tags"><span>Etiquetas:</span>
+                    {% if evento['tags']|length != 0 %}     
+                    
+                        {% set totalTags = evento['tags'] %}     <!--Obtenemos todos los tags y los ponemos en formato "tag 1,tag 2,...,tag n"-->
+                        {% set firstTag = evento['tags'][0] %}
+    
+                        {{firstTag}}
+    
+                        {% if evento['tags']|length > 1%}
+                            {%for element in 1..((evento['tags']|length)-1)%}
+                                , {{totalTags[element]}}
+                            {% endfor %}
+                        {% endif %}
+        
+                    {% endif %}
+                </div>
+
+                <p>{{evento['textoPagina']['descripcion']}}</p>
+
+                <p class="noPadding">Lugar de partida:</p> 
+                
+                <p>{{evento['textoPagina']['texto_recogida']}}</p>
+                <a href="{{evento['textoPagina']['enlace_recogida']}}" title="Abrir en Google Maps" id="here" target="_blank">{{evento['textoPagina']['texto_enlace']}}</a>
+
+                <p class="noPadding">Hora:</p> 
+                        
+                <ul class="tab">
+                    <li><span>Recogida:</span> {{evento['textoPagina']['hora_inicio']}}</li>    
+                    <li><span>Fin del recorrido:</span> {{evento['textoPagina']['hora_fin']}}</li>
+                </ul> 
+                    
+                <p class="noPadding">Para más información adjuntamos el enlace a TripAdvisor</p>
+                
+                <a href="{{evento['textoPagina']['enlace_tripadvisor']}}" title="Accede en TripAdvisor" class="tab" target="_blank">Enlace a TripAdvisor</a>
+
+            </div>
+            
+            <div class="photos">
+                <ul id="slider">
+                    {% set fotos = evento['fotosPagina']%}
+
+                    {% for i in 0..(fotos['src']|length)-1 %}
+                        {% if i == 0 %}
+                            <li>
+                                <input type="radio" id="sbutton{{i}}" name="sradio" checked>
+                                <label for="sbutton{{i}}"></label>
+                                <img src="images_and_gifs_portada/{{fotos['src'][i]}}" title="{{fotos['figcaption'][i]}}">
+                            </li>
+
+                        {% else %}
+                        <li>
+                            <input type="radio" id="sbutton{{i}}" name="sradio">
+                            <label for="sbutton{{i}}"></label>
+                            <img src="images_and_gifs_portada/{{fotos['src'][i]}}" title="{{fotos['figcaption'][i]}}">
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            
+
+        </div>
+
+        {% block buttons %}
+            <button type="button" id="open" onclick="openComments()">Abrir comentarios</button>
+
+
+        <!------------------------------------- BOTONES ----------------------------------------------------------------->
+        <div class="socialButtons">   <!--Al final de la página podemos encontrar un breve texto junto con los botones sociales-->
+            <h1> Enlaces a las redes sociales: </h1>
+
+            <a href="https://es-es.facebook.com/sergi.ruizsanchez.1" title="Conócenos en Facebook">
+                <img src="images_and_gifs_portada/facebook_logo.png" alt="Enlace a Facebook"/>
+            </a>
+
+            <a href="https://twitter.com/sergirsanchez?lang=es" title="Conócenos en Twitter">
+                <img src="images_and_gifs_portada/twitter_logo.png" alt="Enlace a Twitter"/>
+            </a>
+
+            <a href="imprimir.php?ev={{evento['textoPagina']['titulo']}}" title="Imprimir">
+                <img src="images_and_gifs_portada/impresora_logo.png" alt="Imprimir"/>
+            </a>
+
+        </div>           
+        {% endblock %}
+
+            
+    </article>
+    {% endblock %}
+
+    {% block commentMenu%}
+                    <!--Menu X-->
+                <div class="commentMenu">
+
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeComments()">&times;</a>   
+
+                    <div class="preDesignedCommentsContainer">
+                       {% set comentario = evento['todoComentarios']%}
+
+                       {% if comentario['correos']|length > 0%}
+                       
+                            {% for i in 0..(comentario['correos']|length)-1 %}
+                                    <div class="preDesignedComment">
+                                        
+                                        <p>{{comentario['nombres'][i]}}</p>
+                                        <p>{{comentario['fechas'][i]}}</p>
+
+                                        {% if comentario['modificados'][i] == 0 %}
+                                            <pre>{{comentario['contenidos'][i]}}</pre>
+                                        {% else %}
+                                            <pre>(mensaje modificado por moderador)     {{comentario['contenidos'][i]}}</pre>
+                                        {% endif %}
+                                    </div>
+                            {% endfor %}
+                        {% endif %}
+
+                    </div> 
+                
+                    {% if login == 1%}
+
+                        <form class="createComment" action="evento.php" method="POST">
+
+                            <p class="mandatory">* Campos obligatorios</p>
+
+                            <div class="name">
+                                <label for="nameInput">Nombre:</label>
+                                <input type="text" id="nameInput" name="nameInput" value="{{evento['nameInput']}}">
+                                <span class="mandatory">*{{evento['nameInputError']}}</span>
+                            </div>
+
+                            <div class="email">
+                                <label for="emailInput">Email:</label>
+                                <input type="text" id ="emailInput"name="emailInput" value="{{evento['emailInput']}}">
+                                <span class="mandatory">*{{evento['emailInputError']}}</span>
+                            </div>
+
+                            <div class="comment">
+                                <label for="commentInput">Comentario:</label>
+                                <textarea name="commentInput" rows="4" cols="40" oninput="addStars()" onfocus="deleteText(this)" id="commentInput" 
+                                    placeholder="Escriba su comentario...">{{evento['commentInput']}}</textarea>
+                                <span class="mandatory">*{{evento['commentInputError']}}</span>
+                            </div>
+
+                            <input type="submit" name="sendComment" value="Enviar">
+                            <input type="hidden" name="nameEvent" value="{{evento['textoPagina']['titulo']}}">
+
+                        </form>
+
+                    {% endif %}
+
+                    {% if evento['sent'] == 1%}
+                    <script language="javascript">alert("Comentario añadido correctamente")</script>
+                    {% endif %}
+
+                </div>
+    {% endblock %}
+
+{% endblock %}
