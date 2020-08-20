@@ -1,0 +1,161 @@
+DROP TABLE censuradas;
+
+CREATE TABLE `censuradas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `palabra` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO censuradas VALUES("1","feo");
+INSERT INTO censuradas VALUES("2","malo");
+INSERT INTO censuradas VALUES("3","horroroso");
+INSERT INTO censuradas VALUES("4","pesimo");
+
+
+
+DROP TABLE comentarios;
+
+CREATE TABLE `comentarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) DEFAULT NULL,
+  `fecha` varchar(100) DEFAULT NULL,
+  `comentario` text,
+  `correo` varchar(100) DEFAULT NULL,
+  `evento` varchar(200) DEFAULT NULL,
+  `modificado` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `evento` (`evento`),
+  CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`evento`) REFERENCES `eventosSIBW` (`titulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO comentarios VALUES("23","Sergi","21/10/19  23:31","Muy buena experiencia. Repetiría sin duda","sergi@ugr.es","Espectáculo de luz y sonido en las pirámides de Guiza","0");
+INSERT INTO comentarios VALUES("24","Juan","12/3/20  14:45","Maravilloso el espectáculo de luces, muy recomendable","juan@ugr.es","Espectáculo de luz y sonido en las pirámides de Guiza","0");
+INSERT INTO comentarios VALUES("25","Sergi","21/10/19  23:31","Muy buena experiencia. Repetiría sin duda","sergi@ugr.es","Excursión de un día al Museo Egipcio y las pirámides de Guiza con paseo en camello","0");
+INSERT INTO comentarios VALUES("26","Juan","12/3/20  14:45","Maravilloso el paseo en camello, muy recomendable","juan@ugr.es","Excursión de un día al Museo Egipcio y las pirámides de Guiza con paseo en camello","0");
+INSERT INTO comentarios VALUES("27","Sergi","21/10/19  23:31","Muy buena experiencia. Repetiría sin duda","sergi@ugr.es","Paseo privado de felucca en el Nilo con almuerzo tradicional","0");
+INSERT INTO comentarios VALUES("28","Juan","12/3/20  14:45","Maravilloso el paseo en felucca, muy recomendable","juan@ugr.es","Paseo privado de felucca en el Nilo con almuerzo tradicional","0");
+INSERT INTO comentarios VALUES("29","Sergi","21/10/19  23:31","Muy buena experiencia. Repetiría sin duda","sergi@ugr.es","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo","0");
+INSERT INTO comentarios VALUES("30","Juan","12/3/20  14:45","Maravilloso el recorrido con los quads, muy recomendable","juan@ugr.es","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo","0");
+INSERT INTO comentarios VALUES("31","Sergi","21/10/19  23:31","Muy buena experiencia. Repetiría sin duda","sergi@ugr.es","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo","0");
+INSERT INTO comentarios VALUES("33","Sergi","21/10/19  23:31","Muy buena experiencia. Repetiría sin duda","sergi@ugr.es","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel","0");
+INSERT INTO comentarios VALUES("37","Juan","12/3/20  14:45","Maravilloso el crucero, muy recomendable","juan@ugr.es","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel","0");
+INSERT INTO comentarios VALUES("72","Juan","12/3/20  14:45","Maravilloso el tour privado, muy recomendable","juan@ugr.es","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo","0");
+
+
+
+DROP TABLE etiquetas;
+
+CREATE TABLE `etiquetas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `evento` varchar(200) DEFAULT NULL,
+  `etiqueta` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `evento` (`evento`),
+  CONSTRAINT `etiquetas_ibfk_1` FOREIGN KEY (`evento`) REFERENCES `eventosSIBW` (`titulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO etiquetas VALUES("10","Espectáculo de luz y sonido en las pirámides de Guiza","Evento 2");
+INSERT INTO etiquetas VALUES("11","Espectáculo de luz y sonido en las pirámides de Guiza","Luces");
+INSERT INTO etiquetas VALUES("12","Espectáculo de luz y sonido en las pirámides de Guiza","Pirámides");
+INSERT INTO etiquetas VALUES("15","Paseo privado de felucca en el Nilo con almuerzo tradicional","Evento 4");
+INSERT INTO etiquetas VALUES("16","Paseo privado de felucca en el Nilo con almuerzo tradicional","Felucca");
+INSERT INTO etiquetas VALUES("17","Paseo privado de felucca en el Nilo con almuerzo tradicional","Nilo");
+INSERT INTO etiquetas VALUES("46","Excursión de un día al Museo Egipcio y las pirámides de Guiza con paseo en camello","Evento 3");
+INSERT INTO etiquetas VALUES("47","Paseo privado de felucca en el Nilo con almuerzo tradicional","Evento 4");
+INSERT INTO etiquetas VALUES("48","Paseo privado de felucca en el Nilo con almuerzo tradicional"," Felucca");
+INSERT INTO etiquetas VALUES("49","Paseo privado de felucca en el Nilo con almuerzo tradicional"," Nilo");
+INSERT INTO etiquetas VALUES("80","Excursión de un día al Museo Egipcio y las pirámides de Guiza con paseo en camello","Camellos");
+INSERT INTO etiquetas VALUES("106","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo","Quads");
+INSERT INTO etiquetas VALUES("109","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo","Evento 6");
+INSERT INTO etiquetas VALUES("110","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo"," Cairo");
+INSERT INTO etiquetas VALUES("128","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel","Evento 1");
+INSERT INTO etiquetas VALUES("129","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel"," Crucero");
+
+
+
+DROP TABLE eventosSIBW;
+
+CREATE TABLE `eventosSIBW` (
+  `titulo` varchar(200) NOT NULL,
+  `descripcion` text,
+  `texto_recogida` varchar(200) DEFAULT NULL,
+  `enlace_recogida` text,
+  `hora_inicio` varchar(10) DEFAULT NULL,
+  `hora_fin` varchar(10) DEFAULT NULL,
+  `enlace_tripadvisor` text,
+  `texto_enlace` varchar(200) DEFAULT NULL,
+  `publicado` int DEFAULT NULL,
+  PRIMARY KEY (`titulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO eventosSIBW VALUES("Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel","El río Nilo atraviesa 11 países, pero está más estrechamente conectado con Egipto, donde se destaca en la historia y la cultura de la región. Vea el río más largo del mundo durante este entretenido crucero por el horizonte de El Cairo. Complete el recorrido con una cena buffet caliente y un espectáculo cultural tradicional con bailarinas del vientre y artistas de tanoura.","Te recogemos en tu hotel independientemente de la zona de la ciudad en la que te encuentres, pero en el caso de que quieras ir directamente, el crucero sale desde","https://www.google.es/maps/place/Cairo+Dinner+Cruise+-+%D8%B1%D8%AD%D9%84%D8%A9+%D8%B9%D8%B4%D8%A7%D8%A1+%D9%86%D9%8A%D9%84%D9%8A%D8%A9%E2%80%AD/@30.0503578,31.2285049,17z/data=!3m1!4b1!4m5!3m4!1s0x145841db28e25d05:0x269f3b893915141d!8m2!3d30.0503532!4d31.2306989","19h","22h","https://www.tripadvisor.es/AttractionProductReview-g294201-d11995025-Nile_Dinner_Cruise_in_Cairo_with_Belly_Dancing_and_Hotel_Transfer-Cairo_Cairo_Gove.html","aquí","1");
+INSERT INTO eventosSIBW VALUES("Espectáculo de luz y sonido en las pirámides de Guiza","Disfrute de una experiencia completamente nueva de las pirámides de Guiza, viendo un espectáculo de luz y sonido que se ha convertido en una de las mejores actividades por la tarde alrededor de El Cairo. Escuche anécdotas divertidas sobre la historia de las pirámides durante el espectáculo y acérquese a la esfinge y a otras pirámides para hacer fotos. Los traslados de ida y vuelta a su hotel de El Cairo hacen que sea una experiencia perfecta.","Te recogemos en tu hotel independientemente de la zona de la ciudad en la que te encuentres.","","18h","21h","https://www.tripadvisor.es/AttractionProductReview-g294201-d12567195-Sound_and_Light_Show_at_Giza_Pyramids-Cairo_Cairo_Governorate.html","","1");
+INSERT INTO eventosSIBW VALUES("Excursión de un día al Museo Egipcio y las pirámides de Guiza con paseo en camello"," Descubre los misterios antiguos de Egipto en un viaje de un día completo a las pirámides de Giza y el Museo de Antigüedades Egipcias de El Cairo. Comience su aventura con un recorrido por el Museo de Antigüedades Egipcias, hogar de la resplandeciente máscara de la muerte del Rey Tutankamón. Luego, sorpréndete con las pirámides de Giza de 4.000 años de edad mientras exploras el área en un camello. Pare regularmente para escuchar los comentarios llenos de historia y descubra la historia antigua de las maravillas del mundo original. En este tour para grupos pequeños, limitado a 15 personas, recibirá una atención personalizada de su guía.","Te recogemos en tu hotel independientemente de la zona de la ciudad en la que te encuentres.","","8h","16h","https://www.tripadvisor.es/AttractionProductReview-g294201-d11988361-Day_Tour_to_Egyptian_Museum_and_Giza_Pyramids_with_Camel_Ride-Cairo_Cairo_Governor.html","","1");
+INSERT INTO eventosSIBW VALUES("holi","er","e","","12h","14h","","","0");
+INSERT INTO eventosSIBW VALUES("Paseo privado de felucca en el Nilo con almuerzo tradicional","No hay mejor manera de experimentar el Nilo que con un velero tradicional de felucca, pero los vendedores ambulantes en la cornisa pueden transformar lo que debería ser una tarde mágica en una verdadera experiencia. Aproveche al máximo este majestuoso río reservando este crucero privado que incluye traslados privados de ida y vuelta y guía, una auténtica comida egipcia y refrigerios.","","https://www.google.es/maps/place/Ahmed+Ragheb,+Qasr+El+Nil,+Cairo+Governorate,+Egipto/@30.0388543,31.2318653,20z/data=!4m5!3m4!1s0x145840cc3014b6d1:0xd57ed6e0a18d646f!8m2!3d30.0390348!4d31.232102","16h","19h","https://www.tripadvisor.es/AttractionProductReview-g294201-d12961511-Private_Egyptian_felucca_ride_on_the_Nile_with_traditional_lunch-Cairo_Cairo_Gover.html","Emo Tours Egypt, Cairo 11511 Egypt","1");
+INSERT INTO eventosSIBW VALUES("Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo","Ahorre tiempo de vacaciones en El Cairo con una reservación anticipada para esta aventura privada de medio día en quad por Guiza. Reserve con antelación para asegurar la fecha y hora que prefiera, y viaje en una furgoneta privada con aire acondicionado a la Meseta de Guiza. A continuación, súbase a su motocicleta y, después de las instrucciones, salga disparado por la arena y las dunas, mientras levanta polvo sobre el telón de fondo de las Pirámides de Guiza. Se facilita el equipo, así como una selección de horarios de flexibilidad para mayor flexibilidad.","","https://www.google.es/maps/place/Ahmed+Ragheb,+Qasr+El+Nil,+Cairo+Governorate,+Egipto/@30.0388543,31.2318653,20z/data=!4m5!3m4!1s0x145840cc3014b6d1:0xd57ed6e0a18d646f!8m2!3d30.0390348!4d31.232102","16h","19h","https://www.tripadvisor.es/AttractionProductReview-g294201-d13009472-1_Hour_ATV_at_Giza_Pyramids_from_Cairo-Cairo_Cairo_Governorate.html","Emo Tours Egypt, Cairo 11511 Egypt","1");
+INSERT INTO eventosSIBW VALUES("Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo","Disfrute de las vistas esenciales de El Cairo en tan solo un día con su egiptólogo personal y su minivan con Wi-Fi en este tour de puerta a puerta para ahorrar tiempo. Vea las pirámides de Giza, la Gran Esfinge y el Templo del Valle, pasee en camello por el desierto y disfrute de un almuerzo en un restaurante. Pase la tarde en dos atracciones de la ciudad: el Museo de Antigüedades Egipcias y el bazar Khan Al-Khalili.","Te recogemos en tu hotel independientemente de la zona de la ciudad en la que te encuentres.","","8h","16h","https://www.tripadvisor.es/AttractionProductReview-g294202-d11464487-8_Hour_Private_Tour_of_the_Pyramids_Sphinx_Egyptian_Museum_and_Bazaar_including_Ca.html","","1");
+
+
+
+DROP TABLE fotos;
+
+CREATE TABLE `fotos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `src` text,
+  `figcaption` text,
+  `evento` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `evento` (`evento`),
+  CONSTRAINT `fotos_ibfk_1` FOREIGN KEY (`evento`) REFERENCES `eventosSIBW` (`titulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO fotos VALUES("1","paseo_egipto.jpg","Mercado de El Cairo - Cortesía de TripAdvisor","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo");
+INSERT INTO fotos VALUES("2","paseo_egipto_2.jpg","Mercado de El Cairo - Cortesía de TripAdvisor","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo");
+INSERT INTO fotos VALUES("3","paseo_egipto_3.jpg","Mercado de El Cairo - Cortesía de TripAdvisor","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo");
+INSERT INTO fotos VALUES("4","paseo_egipto_4.jpg","Mercado de El Cairo - Cortesía de TripAdvisor","Recorrido privado de 8 horas por las pirámides, la esfinge, el Museo Egipcio y el bazar con paseo en camello y almuerzo desde El Cairo");
+INSERT INTO fotos VALUES("8","baile.jpg","Crucero en El Nilo - Cortesía de TripAdvisor","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel");
+INSERT INTO fotos VALUES("9","baile2.jpg","Crucero en El Nilo - Cortesía de TripAdvisor","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel");
+INSERT INTO fotos VALUES("10","baile3.jpg","Crucero en El Nilo - Cortesía de TripAdvisor","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel");
+INSERT INTO fotos VALUES("11","baile4.jpg","Crucero en El Nilo - Cortesía de TripAdvisor","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel");
+INSERT INTO fotos VALUES("12","baile5.jpg","Crucero en El Nilo - Cortesía de TripAdvisor","Crucero con cena por el Nilo en El Cairo con espectáculo de danza del vientre y traslado al hotel");
+INSERT INTO fotos VALUES("14","felucca_2.jpg","Paseo en Felucca - Cortesía de TripAdvisor","Paseo privado de felucca en el Nilo con almuerzo tradicional");
+INSERT INTO fotos VALUES("15","felucca_3.jpg","Paseo en Felucca - Cortesía de TripAdvisor","Paseo privado de felucca en el Nilo con almuerzo tradicional");
+INSERT INTO fotos VALUES("16","felucca_4.jpg","Paseo en Felucca - Cortesía de TripAdvisor","Paseo privado de felucca en el Nilo con almuerzo tradicional");
+INSERT INTO fotos VALUES("17","quads.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("18","quads_2.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("19","quads_3.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("20","quads_4.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("21","quads_5.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("22","quads_6.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("23","quads_7.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("24","quads_8.jpg","Paseo en quad - Cortesía de TripAdvisor","Recorrido de 1 hora en quad por las pirámides de Guiza desde El Cairo");
+INSERT INTO fotos VALUES("25","espectaculo_luces.jpg","Espectáculo de luces - Cortesía de TripAdvisor","Espectáculo de luz y sonido en las pirámides de Guiza");
+INSERT INTO fotos VALUES("26","espectaculo_luces2.jpg","Espectáculo de luces - Cortesía de TripAdvisor","Espectáculo de luz y sonido en las pirámides de Guiza");
+INSERT INTO fotos VALUES("27","espectaculo_luces3.jpg","Espectáculo de luces - Cortesía de TripAdvisor","Espectáculo de luz y sonido en las pirámides de Guiza");
+INSERT INTO fotos VALUES("28","espectaculo_luces4.jpg","Espectáculo de luces - Cortesía de TripAdvisor","Espectáculo de luz y sonido en las pirámides de Guiza");
+INSERT INTO fotos VALUES("29","paseo_camello.jpg","Paseo en camello - Cortesía de TripAdvisor","Excursión de un día al Museo Egipcio y las pirámides de Guiza con paseo en camello");
+INSERT INTO fotos VALUES("30","paseo_camello2.jpg","Paseo en camello - Cortesía de TripAdvisor","Excursión de un día al Museo Egipcio y las pirámides de Guiza con paseo en camello");
+INSERT INTO fotos VALUES("42","felucca.jpg","Paseo en Felucca - Cortesía de TripAdvisor","Paseo privado de felucca en el Nilo con almuerzo tradicional");
+INSERT INTO fotos VALUES("120","no-image.jpg","","holi");
+
+
+
+DROP TABLE usuarios;
+
+CREATE TABLE `usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  `clave` varchar(100) DEFAULT NULL,
+  `rol` varchar(100) DEFAULT NULL,
+  `correo` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO usuarios VALUES("17","usuario","$2y$10$y/4.mCGd5vzT.Eucg5eJhuDsr99ZUPOkKBVj6/70r8PaCdneqsNAG","usuario","usuario@ugr.es");
+INSERT INTO usuarios VALUES("18","moderador","$2y$10$iLSNtHgH/7jseZtVIfOhXeeLXvAM6ylSGBVlAm//2JBGGcQ/4u1Em","moderador","moderador@ugr.es");
+INSERT INTO usuarios VALUES("19","gestor","$2y$10$kStB5rhGP..K7/j9uJdML.CSMx5qaBMVxg98nEhfV/wO7aUpJW.Tm","gestor","gestor@ugr.es");
+INSERT INTO usuarios VALUES("20","super","$2y$10$45zVWpvXcsqwfTC6D0E7LOoMMd1U/f1OrsPw1tOUy3QDryRORgtAu","super","super@ugr.es");
+
+
+
