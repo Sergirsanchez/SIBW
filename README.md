@@ -20,4 +20,4 @@ existentes en la web, asi como cambiar su rol y eliminarlos (un superusuario no 
 eliminar a otros usuarios que tengan también el rol de "superusuario". Para poder hacerlo, antes debe cambiar el rol de estos a cualquier otro de los existentes).
 
 Se ha empleado el sistemas de plantillas Twig, pero para elaborar la practica este fue usado a traves de Docker, por lo que para que todo funcione correctamente 
-deberemos cambiar la dirección del "require_once" del principio de todos los php a la direccion donde tengamos el fichero "autoload.php" de Twig.
+deberemos cambiar la dirección del "require_once" del principio de todos los php a la direccion donde tengamos el fichero "autoload.php" de Twig. 
